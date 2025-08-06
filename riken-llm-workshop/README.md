@@ -1,10 +1,16 @@
 <!--- # riken-llm-workshop-2025 ---> 
 <!--- img style='height: 100%; width: 100%; object-fit: contain' src="aip.png"/ --->
 
+---
+layout: default
+title: RIKEN LLM Workshop
+---
+
+<h1>RIKEN LLM Workshop</h1>
 
 ## Goal
 
-This workshop aims to promote internal exchange and foster a research-oriented community within RIKEN-AIP, centered on shared interests in LLMs. It will also serve as a platform to encourage collaboration and understanding across teams. 
+This workshop aims to promote internal exchange and foster a research-oriented community within RIKEN-AIP, centered on shared interests in LLMs. It will also serve as a platform to encourage collaboration and understanding across teams.  11
 
 ## Dates and Location
 
