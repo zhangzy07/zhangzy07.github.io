@@ -6,75 +6,126 @@
   <title>RIKEN LLM Workshop</title>
   <style>
     body {
-      font-family: sans-serif;
-      max-width: 900px;
-      margin: 50px auto;
-      padding: 20px;
-      line-height: 1.6;
+      font-family: "Helvetica Neue", sans-serif;
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 20px;
       color: #333;
+      background-color: #f9f9f9;
     }
 
-    h1, h2 {
+    h1 {
       text-align: center;
+      color: #1a237e;
+      margin-bottom: 10px;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1em;
-    }
-
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px 12px;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f2f2f2;
+    h2 {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+      margin-top: 40px;
+      color: #2c3e50;
     }
 
     nav {
       text-align: center;
-      margin: 20px 0;
+      margin-bottom: 30px;
     }
 
     nav a {
-      margin: 0 10px;
+      margin: 0 15px;
       color: #1a73e8;
+      font-weight: bold;
       text-decoration: none;
     }
 
     nav a:hover {
       text-decoration: underline;
     }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      margin-bottom: 30px;
+      background-color: #fff;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #e3f2fd;
+      font-weight: bold;
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+
+    .schedule-date {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #1565c0;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.9em;
+      color: #888;
+    }
   </style>
 </head>
 <body>
+
   <h1>RIKEN LLM Workshop</h1>
 
   <nav>
-    <a href="./schedule.html">Detailed Schedule</a>
-    <!-- Add more links as needed -->
+    <a href="#goal">Goal</a>
+    <a href="#dates">Dates</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#organizers">Organizers</a>
   </nav>
 
-  <h2>Goal</h2>
+  <h2 id="goal">Goal</h2>
   <p>
-    This workshop aims to promote internal exchange and foster a research-oriented community within RIKEN-AIP, centered on shared interests in LLMs.
-    It will also serve as a platform to encourage collaboration and understanding across teams.
-  </p>
+  This workshop aims to promote internal exchange and foster a research-oriented community within RIKEN-AIP,
+  centered on shared interests in LLMs. It will also serve as a platform to encourage collaboration and
+  understanding across teams.
 
-  <h2>Dates and Location</h2>
+  <h2 id="dates">Dates and Location</h2>
   <ul>
     <li><strong>Dates:</strong> October 2–3, 2025</li>
     <li><strong>Location:</strong> RIKEN-AIP Open Space, Tokyo + Online (with verification)</li>
     <li><strong>Accessibility:</strong> Open to all RIKEN-affiliated members</li>
   </ul>
 
-  <h2>Schedule</h2>
+  <h2 id="schedule">Schedule</h2>
+
+  <div class="schedule-date">Day 1 — October 2nd, 2025</div>
   <table>
     <tr><th>Time</th><th>Description</th></tr>
-    <tr><td>9:50–10:00</td><td>Welcome and opening remarks</td></tr>
+    <tr><td>10:50–11:00</td><td>Welcome and opening remarks</td></tr>
+    <tr><td>11:00–11:30</td><td>Speaker: XXX <br> Title: XXX</td></tr>
+    <tr><td>11:30–12:00</td><td>Speaker: XXX <br> Title: XXX</td></tr>
+    <tr><td>12:00–14:30</td><td>Lunch and poster session</td></tr>
+    <tr><td>14:30–15:00</td><td>Speaker: XXX <br> Title: XXX</td></tr>
+    <tr><td>15:00–15:30</td><td>Speaker: XXX <br> Title: XXX</td></tr>
+    <tr><td>15:30–16:00</td><td>Tea Break</td></tr>
+    <tr><td>16:00–16:30</td><td>Speaker: XXX <br> Title: XXX</td></tr>
+    <tr><td>16:30–17:00</td><td>Speaker: XXX <br> Title: XXX</td></tr>
+  </table>
+
+  <div class="schedule-date">Day 2 — October 3rd, 2025</div>
+  <table>
+    <tr><th>Time</th><th>Description</th></tr>
     <tr><td>10:00–10:30</td><td>Speaker: XXX <br> Title: XXX</td></tr>
     <tr><td>10:30–11:00</td><td>Speaker: XXX <br> Title: XXX</td></tr>
     <tr><td>11:00–11:30</td><td>Tea Break</td></tr>
@@ -83,14 +134,24 @@
     <tr><td>12:30–14:30</td><td>Lunch and poster session</td></tr>
     <tr><td>14:30–15:00</td><td>Speaker: XXX <br> Title: XXX</td></tr>
     <tr><td>15:00–15:30</td><td>Speaker: XXX <br> Title: XXX</td></tr>
-    <tr><td>15:30–16:00</td><td>Tea Break</td></tr>
-    <tr><td>16:00–16:30</td><td>Speaker: XXX <br> Title: XXX</td></tr>
-    <tr><td>16:30–17:00</td><td>Speaker: XXX <br> Title: XXX</td></tr>
   </table>
 
-  <h2>Organizers</h2>
-  <p><strong>Contact the organizers</strong></p>
+  <h2 id="organizers">Organizers</h2>
+  <ul>
+  <li>Prof. Masashi Sugiyama</li>
+  <li>Prof. Kentaro Inui</li>
+  <li>Dr. Benjamin Tobias Heinzerling</li>
+  <li>Dr. Zhen-Yu Zhang</li>
+  </ul>
+
+  <p><strong>Contact the organizers:</strong></p>
 
   <h2>Acknowledgment</h2>
+  <p>We gratefully acknowledge support from RIKEN AIP and all participating teams.</p>
+
+  <footer>
+    © 2025 RIKEN LLM Workshop
+  </footer>
+
 </body>
 </html>
