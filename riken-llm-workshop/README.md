@@ -35,8 +35,6 @@ This workshop aims to promote internal exchange and foster a research-oriented c
 
 **Contact the organizers**
 
-Email to uva-llm-ws2024@virginia.edu
-
 
 ## Acknowledgment
 
