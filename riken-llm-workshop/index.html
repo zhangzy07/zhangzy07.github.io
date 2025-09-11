@@ -38,6 +38,44 @@
   .wrapper{margin-top:40px}
   .lead{color:var(--muted);margin-bottom:24px}
 
+  /* Location 行美化 + Zoom 按钮 */
+.location-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+}
+.location-row .place::before{
+  content:"📍 ";
+}
+.location-row .dot{ color:#999; margin:0 4px; }
+.online-badge{
+  padding:2px 8px;
+  border-radius:999px;
+  background:#f0fff7;
+  border:1px solid #bfe8d2;
+  color:#1e6b4d;
+  font-size:12px;
+}
+.btn-zoom{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 10px;
+  border-radius:10px;
+  background:#e9f2ff;
+  border:1px solid #b9d4ff;
+  color:#0d47a1;
+  text-decoration:none;
+  font-weight:600;
+}
+.btn-zoom:hover{ background:#dfe7ff; }
+.btn-zoom:focus-visible{
+  outline:2px solid #0d47a1;
+  outline-offset:2px;
+}
+
+
   /* Tabs - 明显的 Day 切换 */
   .tabs{
     position:relative;display:inline-flex;gap:8px;padding:6px;border-radius:999px;
@@ -135,7 +173,10 @@
   <h2 id="dates">Dates and Location</h2>
   <ul>
     <li><strong>Dates:</strong> October 2–3, 2025</li>
-    <li><strong>Location:</strong> RIKEN-AIP Open Space, Tokyo + Online (with verification)</li>
+    <li><strong>Location:</strong> <span class="place">RIKEN AIP Open Space, Tokyo</span>
+  <span class="dot">·</span>
+  Online (with verification)
+  <a class="btn-zoom" href="" target="_blank" rel="noopener">Join via Zoom</a></li>
     <li><strong>Accessibility:</strong> Open to all RIKEN-affiliated members</li>
   </ul>
 
@@ -164,8 +205,8 @@
 
       <!-- Opening (独立条目) -->
       <div class="solo opening" style="border-left-color:#28c5a5;margin:10px 0">
-        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">10:30 to 10:40</div>
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Welcome and Opening Remarks</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">10:30 ~ 10:40</div>
       </div>
 
       <!-- Session A -->
@@ -173,13 +214,13 @@
         <div class="session-header">
           <div class="session-title">
             <span>Session A</span>
-            <span class="session-time">10:40 to 12:30</span>
+            <span class="session-time">10:40 ~ 12:30</span>
           </div>
           <span class="session-chair">Chair A</span>
         </div>
         <div class="session-body">
           <div class="slot talk">
-            <div class="time">10:40 to 11:10</div>
+            <div class="time">10:40 ~ 11:10</div>
             <div class="meta">
               <div class="title">Interpretability: What do we know and what do we want to know?</div>
               <div class="speaker">Speaker: Benjamin Heinzerling</div>
@@ -187,7 +228,7 @@
             </div>
           </div>
           <div class="slot talk">
-            <div class="time">11:10 to 11:40</div>
+            <div class="time">11:10 ~ 11:40</div>
             <div class="meta">
               <div class="title">Understanding Fact Recall in Language Models: Why Mixed Training Teaches Knowledge While Two-Stage Training Encourages Memorization</div>
               <div class="speaker">Speaker: Ying Zhang</div>
@@ -195,7 +236,7 @@
             </div>
           </div>
           <div class="slot talk">
-            <div class="time">11:40 to 12:10</div>
+            <div class="time">11:40 ~ 12:10</div>
             <div class="meta">
               <div class="title">TopK Language Models</div>
               <div class="speaker">Speaker: Ryosuke Takahashi</div>
@@ -203,7 +244,7 @@
             </div>
           </div>
           <div class="slot panel">
-            <div class="time">12:10 to 12:30</div>
+            <div class="time">12:10 ~ 12:30</div>
             <div class="meta"><div class="title">Topic-centered Panel Discussion</div></div>
           </div>
         </div>
@@ -211,8 +252,8 @@
 
       <!-- Lunch (独立条目) -->
       <div class="solo break" style="border-left-color:#ffbf7b;background:#fffaf5;margin:10px 0">
-        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">12:30 to 13:30</div>
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Lunch</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">12:30 ~ 13:30</div>
       </div>
 
       <!-- Session B -->
@@ -220,13 +261,13 @@
         <div class="session-header">
           <div class="session-title">
             <span>Session B</span>
-            <span class="session-time">13:30 to 15:20</span>
+            <span class="session-time">13:30 ~ 15:20</span>
           </div>
           <span class="session-chair">Chair B</span>
         </div>
         <div class="session-body">
           <div class="slot talk">
-            <div class="time">13:30 to 14:00</div>
+            <div class="time">13:30 ~ 14:00</div>
             <div class="meta">
               <div class="title">Select before use: on the importance of base model selection in preference alignment</div>
               <div class="speaker">Speaker: Muyang Li</div>
@@ -234,7 +275,7 @@
             </div>
           </div>
           <div class="slot talk">
-            <div class="time">14:00 to 14:30</div>
+            <div class="time">14:00 ~ 14:30</div>
             <div class="meta">
               <div class="title">In-context Demonstration Matters: On Prompt Optimization for Pseudo-Supervision Refinement</div>
               <div class="speaker">Speaker: Zhen-Yu Zhang</div>
@@ -242,7 +283,7 @@
             </div>
           </div>
           <div class="slot talk">
-            <div class="time">14:30 to 15:00</div>
+            <div class="time">14:30 ~ 15:00</div>
             <div class="meta">
               <div class="title">Physics Informed Large Language Models for Power Grids Optimization</div>
               <div class="speaker">Speaker: Salah Ghamizi</div>
@@ -250,7 +291,7 @@
             </div>
           </div>
           <div class="slot panel">
-            <div class="time">15:00 to 15:20</div>
+            <div class="time">15:00 ~ 15:20</div>
             <div class="meta"><div class="title">Topic-centered Panel Discussion</div></div>
           </div>
         </div>
@@ -258,8 +299,8 @@
 
       <!-- Tea/Coffee (独立条目) -->
       <div class="solo break" style="border-left-color:#ffbf7b;background:#fffaf5;margin:10px 0">
-        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">15:20 to 15:40</div>
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Tea/Coffee</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">15:20 ~ 15:40</div>
       </div>
 
       <!-- Session C -->
@@ -267,13 +308,13 @@
         <div class="session-header">
           <div class="session-title">
             <span>Session C</span>
-            <span class="session-time">15:40 to 17:30</span>
+            <span class="session-time">15:40 ~ 17:30</span>
           </div>
           <span class="session-chair">Chair C</span>
         </div>
         <div class="session-body">
           <div class="slot talk">
-            <div class="time">15:40 to 16:10</div>
+            <div class="time">15:40 ~ 16:10</div>
             <div class="meta">
               <div class="title">Trained Mamba Emulates Online Gradient Descent in In-Context Linear Regression</div>
               <div class="speaker">Speaker: Wei Huang</div>
@@ -281,7 +322,7 @@
             </div>
           </div>
           <div class="slot talk">
-            <div class="time">16:10 to 16:40</div>
+            <div class="time">16:10 ~ 16:40</div>
             <div class="meta">
               <div class="title">Provable In-Context Learning of Autoregressive Processes under Varying Task Distributions</div>
               <div class="speaker">Speaker: Hanna Tseran</div>
@@ -289,7 +330,7 @@
             </div>
           </div>
           <div class="slot talk">
-            <div class="time">16:40 to 17:10</div>
+            <div class="time">16:40 ~ 17:10</div>
             <div class="meta">
               <div class="title">Seeing Is Believing, But How Much? A Comprehensive Analysis of Verbalized Calibration in Vision-Language Models</div>
               <div class="speaker">Speaker: Weihao Xuan</div>
@@ -297,7 +338,7 @@
             </div>
           </div>
           <div class="slot panel">
-            <div class="time">17:10 to 17:30</div>
+            <div class="time">17:10 ~ 17:30</div>
             <div class="meta"><div class="title">Topic-centered Panel Discussion</div></div>
           </div>
         </div>
@@ -305,8 +346,8 @@
 
       <!-- World Café (独立条目) -->
       <div class="solo cafe" style="border-left-color:#c8b6ff;margin:10px 0">
-        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">17:30 to 18:00</div>
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">World Café</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">17:30 ~ 18:00</div>
       </div>
     </section>
 
@@ -319,13 +360,13 @@
         <div class="session-header">
           <div class="session-title">
             <span>Session D</span>
-            <span class="session-time">10:30 to 12:20</span>
+            <span class="session-time">10:30 ~ 12:20</span>
           </div>
           <span class="session-chair">Chair D</span>
         </div>
         <div class="session-body">
           <div class="slot talk">
-            <div class="time">10:30 to 11:00</div>
+            <div class="time">10:30 ~ 11:00</div>
             <div class="meta">
               <div class="title">Fast Substructure Search on JSONL for Structured RAG</div>
               <div class="speaker">Speaker: Yasuo Tabei</div>
@@ -333,7 +374,7 @@
             </div>
           </div>
           <div class="slot talk">
-            <div class="time">11:00 to 11:30</div>
+            <div class="time">11:00 ~ 11:30</div>
             <div class="meta">
               <div class="title">Ensemble LLM</div>
               <div class="speaker">Speaker: Junpei Komiyama</div>
@@ -341,7 +382,7 @@
             </div>
           </div>
           <div class="slot talk">
-            <div class="time">11:30 to 12:00</div>
+            <div class="time">11:30 ~ 12:00</div>
             <div class="meta">
               <div class="title">SPIRIT: Patching Speech Language Models against Jailbreak Attacks <span class="tag online">Online</span></div>
               <div class="speaker">Speaker: Nurdaulet Mukhituly</div>
@@ -349,7 +390,7 @@
             </div>
           </div>
           <div class="slot panel">
-            <div class="time">12:00 to 12:20</div>
+            <div class="time">12:00 ~ 12:20</div>
             <div class="meta"><div class="title">Topic-centered Panel Discussion</div></div>
           </div>
         </div>
@@ -357,8 +398,8 @@
 
       <!-- Lunch -->
       <div class="solo break" style="border-left-color:#ffbf7b;background:#fffaf5;margin:10px 0">
-        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">12:20 to 13:00</div>
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Lunch</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">12:20 ~ 13:00</div>
       </div>
 
       <!-- Session E -->
@@ -366,13 +407,13 @@
         <div class="session-header">
           <div class="session-title">
             <span>Session E</span>
-            <span class="session-time">13:00 to 14:50</span>
+            <span class="session-time">13:00 ~ 14:50</span>
           </div>
           <span class="session-chair">Chair E</span>
         </div>
         <div class="session-body">
           <div class="slot talk">
-            <div class="time">13:00 to 13:30</div>
+            <div class="time">13:00 ~ 13:30</div>
             <div class="meta">
               <div class="title">Variational Training for Improving and Understanding LLMs</div>
               <div class="speaker">Speaker: Thomas Möllenhoff</div>
@@ -380,7 +421,7 @@
             </div>
           </div>
           <div class="slot talk">
-            <div class="time">13:30 to 14:00</div>
+            <div class="time">13:30 ~ 14:00</div>
             <div class="meta">
               <div class="title">Variational Model Merging</div>
               <div class="speaker">Speaker: Hugo Monzon</div>
@@ -388,7 +429,7 @@
             </div>
           </div>
           <div class="slot talk">
-            <div class="time">14:00 to 14:30</div>
+            <div class="time">14:00 ~ 14:30</div>
             <div class="meta">
               <div class="title">Real-Time Diagnostics for LLMs</div>
               <div class="speaker">Speaker: Christopher J. Anders</div>
@@ -396,7 +437,7 @@
             </div>
           </div>
           <div class="slot panel">
-            <div class="time">14:30 to 14:50</div>
+            <div class="time">14:30 ~ 14:50</div>
             <div class="meta"><div class="title">Topic-centered Panel Discussion</div></div>
           </div>
         </div>
@@ -404,8 +445,8 @@
 
       <!-- Tea/Coffee -->
       <div class="solo break" style="border-left-color:#ffbf7b;background:#fffaf5;margin:10px 0">
-        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">14:50 to 15:10</div>
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Tea/Coffee</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">14:50 ~ 15:10</div>
       </div>
 
       <!-- Session F -->
@@ -413,13 +454,13 @@
         <div class="session-header">
           <div class="session-title">
             <span>Session F</span>
-            <span class="session-time">15:10 to 17:00</span>
+            <span class="session-time">15:10 ~ 17:00</span>
           </div>
           <span class="session-chair">Chair F</span>
         </div>
         <div class="session-body">
           <div class="slot talk">
-            <div class="time">15:10 to 15:40</div>
+            <div class="time">15:10 ~ 15:40</div>
             <div class="meta">
               <div class="title">TBD <span class="tag online">Online</span></div>
               <div class="speaker">Speaker: Hilal AlQuabeh</div>
@@ -427,7 +468,7 @@
             </div>
           </div>
           <div class="slot talk">
-            <div class="time">15:40 to 16:10</div>
+            <div class="time">15:40 ~ 16:10</div>
             <div class="meta">
               <div class="title">TBD <span class="tag online">Online</span></div>
               <div class="speaker">Speaker: Tatsuya Hiraoka</div>
@@ -435,7 +476,7 @@
             </div>
           </div>
           <div class="slot talk">
-            <div class="time">16:10 to 16:40</div>
+            <div class="time">16:10 ~ 16:40</div>
             <div class="meta">
               <div class="title">TBD <span class="tag online">Online</span></div>
               <div class="speaker">Speaker: Muhammad Cendekia Airlangga</div>
@@ -443,7 +484,7 @@
             </div>
           </div>
           <div class="slot panel">
-            <div class="time">16:40 to 17:00</div>
+            <div class="time">16:40 ~ 17:00</div>
             <div class="meta"><div class="title">Topic-centered Panel Discussion</div></div>
           </div>
         </div>
@@ -451,14 +492,14 @@
 
       <!-- World Café -->
       <div class="solo cafe" style="border-left-color:#c8b6ff;margin:10px 0">
-        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">17:00 to 17:30</div>
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">World Café</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">17:00 ~ 17:30</div>
       </div>
 
       <!-- Closing -->
       <div class="solo closing" style="border-left-color:#28c5a5;margin:10px 0">
-        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">17:30 to 17:40</div>
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Closing Remarks</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">17:30 ~ 17:40</div>
       </div>
     </section>
   </div>
