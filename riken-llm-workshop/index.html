@@ -30,7 +30,7 @@
   h1{text-align:center;color:#1a237e;margin:30px 0}
   h2{border-bottom:2px solid #ccc;padding-bottom:5px;margin-top:40px;color:#2c3e50}
   nav{text-align:center;margin-bottom:30px}
-  nav a{margin:0 15px;color:#1976d2;font-weight:bold;text-decoration:none}
+  nav a{margin:0 15px;color:#1976d2;font-weight:700;text-decoration:none}
   nav a:hover{text-decoration:underline}
   .banner-container{width:100%;max-width:960px;height:200px;overflow:hidden;margin:0 auto}
   .banner-container img{width:100%;height:auto;object-fit:cover;object-position:bottom;transform:translateY(-25%)}
@@ -38,54 +38,27 @@
   .wrapper{margin-top:40px}
   .lead{color:var(--muted);margin-bottom:24px}
 
-  /* Location 行美化 + Zoom 按钮 */
-.location-row{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  gap:8px;
-}
-.location-row .place::before{
-  content:"📍 ";
-}
-.location-row .dot{ color:#999; margin:0 4px; }
-.online-badge{
-  padding:2px 8px;
-  border-radius:999px;
-  background:#f0fff7;
-  border:1px solid #bfe8d2;
-  color:#1e6b4d;
-  font-size:12px;
-}
-.btn-zoom{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding:6px 10px;
-  border-radius:10px;
-  background:#e9f2ff;
-  border:1px solid #b9d4ff;
-  color:#0d47a1;
-  text-decoration:none;
-  font-weight:600;
-}
-.btn-zoom:hover{ background:#dfe7ff; }
-.btn-zoom:focus-visible{
-  outline:2px solid #0d47a1;
-  outline-offset:2px;
-}
+  /* 位置与按钮 */
+  .location-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;}
+  .location-row .place::before{content:"📍 ";}
+  .location-row .dot{ color:#999; margin:0 4px; }
+  .online-badge{padding:2px 8px;border-radius:999px;background:#f0fff7;border:1px solid #bfe8d2;color:#1e6b4d;font-size:12px;}
+  .btn-zoom{
+    display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:10px;background:#e9f2ff;border:1px solid #b9d4ff;color:#0d47a1;text-decoration:none;font-weight:600;
+  }
+  .btn-zoom:hover{ background:#dfe7ff; }
+  .btn-zoom:focus-visible{ outline:2px solid #0d47a1; outline-offset:2px; }
 
-
-  /* Tabs - 明显的 Day 切换 */
+  /* Tabs */
   .tabs{
     position:relative;display:inline-flex;gap:8px;padding:6px;border-radius:999px;
     background:#e9f2ff;border:1px solid #b9d4ff;margin-bottom:20px
   }
   .tab{
     position:relative;z-index:1;background:transparent;border:0;padding:14px 28px;border-radius:999px;
-    color:#1f3b73;cursor:pointer;font-weight:600;font-size:18px;transition:color .2s ease
+    color:#1f3b73;cursor:pointer;font-weight:700;font-size:18px;transition:color .2s ease
   }
-  .tab[aria-selected="true"]{color:#0d47a1;font-weight:700}
+  .tab[aria-selected="true"]{color:#0d47a1}
   .tabs .indicator{
     position:absolute;top:6px;left:6px;height:50px;border-radius:999px;background:#bbdefb;
     box-shadow:0 4px 10px rgba(13,71,161,.12), inset 0 0 0 1px #90caf9;
@@ -106,19 +79,26 @@
   .legend .break .dot{background:#ff9800}
   .legend .cafe .dot{background:#9c27b0}
 
-  /* Session 分组 */
-  .session{
+  /* 统一的圆润左侧高亮条纹块：solo 和 session 全部使用 */
+  .block{
     background:#fff;
     border:1px solid #e7eef8;
-    border-radius:16px;
+    border-radius:14px;
     box-shadow:0 2px 10px rgba(0,0,0,.04);
     margin:14px 0 18px;
-    overflow:hidden;
+    padding:12px 14px;
+    border-left:6px solid transparent; /* 通过颜色修饰类来着色 */
   }
+  .block.opening{ border-left-color:#28c5a5; }
+  .block.closing{ border-left-color:#28c5a5; }
+  .block.break{ border-left-color:#ffbf7b; background:#fff; }
+  .block.cafe{ border-left-color:#c8b6ff; }
+  .block.session{ border-left-color:var(--accent); }
+
+  /* session 内部结构 */
   .session-header{
     display:flex;align-items:center;gap:12px;justify-content:space-between;
-    padding:12px 16px;
-    background:#f6faff;
+    padding:6px 2px 12px;
     border-bottom:1px solid #e7eef8;
   }
   .session-title{
@@ -128,27 +108,31 @@
   .session-chair{
     padding:6px 10px;border-radius:999px;border:1px solid #bfe8d2;background:#f0fff7;color:#1e6b4d;font-size:12px;white-space:nowrap
   }
-  .session-body{display:flex;flex-direction:column;gap:10px;padding:12px 12px 14px}
+  .session-body{display:flex;flex-direction:column;gap:0;padding:8px 0 0}
 
-  /* slot 样式（沿用卡片 + 色带） */
+  /* slot：去掉 talk 的左条，改用轻分隔线连接 */
   .slot{
     display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:start;
-    background:#ffffff;border-radius:14px;padding:12px 14px;border:1px solid #eef3fb
+    background:transparent;border:0;padding:10px 4px;
   }
+  .slot + .slot{border-top:1px solid #eef3fb;}
   .slot .time{font-variant-numeric:tabular-nums;font-weight:700;color:#18407c}
   .slot .meta .title{font-weight:700;line-height:1.35;color:#21324a}
   .slot .meta .speaker{margin-top:6px;color:#5f6b7a}
   .slot .meta .team{margin-top:2px;color:#6f7f95;font-size:13px}
 
-  /* 类型背景/边条（更浅） */
-  .slot.talk{border-left:4px solid #4c8bf5}
-  .slot.panel{border-left:4px solid #7a9cff;background:#fbfcff}
-  .slot.break{border-left:4px solid #ffbf7b;background:#fffaf5}
-  .slot.cafe{border-left:4px solid #c8b6ff}
-  .slot.opening,.slot.closing{border-left:4px solid #28c5a5}
+  /* panel 轻背景，保持圆润感觉 */
+  .slot.panel{
+    background:#fbfcff;
+    border-radius:12px;
+    padding:12px;
+    margin-top:10px;
+    box-shadow:inset 0 0 0 1px #eef3fb;
+  }
 
-  /* 独立的 break/cafe 卡片（非 session 内） */
-  .solo{padding:12px 14px;border:1px solid #e7eef8;border-left-width:4px;border-radius:14px;background:#fff}
+  /* 独立的 block 仍可按需加背景色 */
+  .block.break{ background:#fffaf5; }
+  .block.cafe{ background:#fff; }
 
   @media(max-width:720px){
     .slot{grid-template-columns:1fr}
@@ -174,15 +158,16 @@
   <ul>
     <li><strong>Dates:</strong> October 2–3, 2025</li>
     <li><strong>Location:</strong> <span class="place">RIKEN AIP Open Space, Tokyo</span>
-  <span class="dot">·</span>
-  Online (with verification)
-  <a class="btn-zoom" href="" target="_blank" rel="noopener">Join via Zoom</a></li>
+      <span class="dot">·</span>
+      Online (with verification)
+      <a class="btn-zoom" href="" target="_blank" rel="noopener">Join via Zoom</a>
+    </li>
     <li><strong>Accessibility:</strong> Open to all RIKEN-affiliated members</li>
   </ul>
 
   <div class="wrapper">
     <h2 id="schedule">Schedule</h2>
-    <p class="lead">Sessions are grouped as 3 talks + 1 panel. Click a date to switch.</p>
+    <p class="lead">Sessions are grouped as 3 talks and 1 panel. Click a date to switch.</p>
 
     <!-- Tabs -->
     <div class="tabs" role="tablist" aria-label="Select day">
@@ -203,14 +188,14 @@
     <section class="day active" id="day1" aria-labelledby="tab1">
       <div class="date-header"><div class="date-title">Day 1</div><div class="date-sub">October 2, 2025</div></div>
 
-      <!-- Opening (独立条目) -->
-      <div class="solo opening" style="border-left-color:#28c5a5;margin:10px 0">
+      <!-- Opening -->
+      <div class="block opening">
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Welcome and Opening Remarks</div></div>
         <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">10:30 ~ 10:40</div>
       </div>
 
       <!-- Session A -->
-      <div class="session">
+      <div class="block session">
         <div class="session-header">
           <div class="session-title">
             <span>Session A</span>
@@ -250,14 +235,14 @@
         </div>
       </div>
 
-      <!-- Lunch (独立条目) -->
-      <div class="solo break" style="border-left-color:#ffbf7b;background:#fffaf5;margin:10px 0">
+      <!-- Lunch -->
+      <div class="block break">
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Lunch</div></div>
         <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">12:30 ~ 13:30</div>
       </div>
 
       <!-- Session B -->
-      <div class="session">
+      <div class="block session">
         <div class="session-header">
           <div class="session-title">
             <span>Session B</span>
@@ -297,14 +282,14 @@
         </div>
       </div>
 
-      <!-- Tea/Coffee (独立条目) -->
-      <div class="solo break" style="border-left-color:#ffbf7b;background:#fffaf5;margin:10px 0">
+      <!-- Tea/Coffee -->
+      <div class="block break">
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Tea/Coffee</div></div>
         <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">15:20 ~ 15:40</div>
       </div>
 
       <!-- Session C -->
-      <div class="session">
+      <div class="block session">
         <div class="session-header">
           <div class="session-title">
             <span>Session C</span>
@@ -344,8 +329,8 @@
         </div>
       </div>
 
-      <!-- World Café (独立条目) -->
-      <div class="solo cafe" style="border-left-color:#c8b6ff;margin:10px 0">
+      <!-- World Café -->
+      <div class="block cafe">
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">World Café</div></div>
         <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">17:30 ~ 18:00</div>
       </div>
@@ -356,7 +341,7 @@
       <div class="date-header"><div class="date-title">Day 2</div><div class="date-sub">October 3, 2025</div></div>
 
       <!-- Session D -->
-      <div class="session">
+      <div class="block session">
         <div class="session-header">
           <div class="session-title">
             <span>Session D</span>
@@ -397,13 +382,13 @@
       </div>
 
       <!-- Lunch -->
-      <div class="solo break" style="border-left-color:#ffbf7b;background:#fffaf5;margin:10px 0">
+      <div class="block break">
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Lunch</div></div>
         <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">12:20 ~ 13:00</div>
       </div>
 
       <!-- Session E -->
-      <div class="session">
+      <div class="block session">
         <div class="session-header">
           <div class="session-title">
             <span>Session E</span>
@@ -444,13 +429,13 @@
       </div>
 
       <!-- Tea/Coffee -->
-      <div class="solo break" style="border-left-color:#ffbf7b;background:#fffaf5;margin:10px 0">
+      <div class="block break">
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Tea/Coffee</div></div>
         <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">14:50 ~ 15:10</div>
       </div>
 
       <!-- Session F -->
-      <div class="session">
+      <div class="block session">
         <div class="session-header">
           <div class="session-title">
             <span>Session F</span>
@@ -491,13 +476,13 @@
       </div>
 
       <!-- World Café -->
-      <div class="solo cafe" style="border-left-color:#c8b6ff;margin:10px 0">
+      <div class="block cafe">
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">World Café</div></div>
         <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">17:00 ~ 17:30</div>
       </div>
 
       <!-- Closing -->
-      <div class="solo closing" style="border-left-color:#28c5a5;margin:10px 0">
+      <div class="block closing">
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Closing Remarks</div></div>
         <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">17:30 ~ 17:40</div>
       </div>
