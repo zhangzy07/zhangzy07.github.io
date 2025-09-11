@@ -1,119 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RIKEN LLM Workshop</title>
-  <style>
-    body {
-      font-family: "Helvetica Neue", sans-serif;
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 20px;
-      color: #333;
-      background-color: #f9f9f9;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RIKEN LLM Workshop</title>
+<style>
+  :root{
+    --bg:#f9f9f9;
+    --card:#ffffff;
+    --ink:#333;
+    --muted:#555;
+    --accent:#1976d2;
+    --accent-2:#2e7d32;
+    --break:#fff3e0;
+    --panel:#f1f5ff;
+    --shadow:0 4px 12px rgba(0,0,0,.08);
+    --radius:14px;
+  }
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Helvetica Neue",sans-serif;
+    margin:0;
+    padding:0 20px;
+    display:flex;
+    justify-content:center;
+  }
+  .container{width:100%;max-width:960px}
+  h1{text-align:center;color:#1a237e;margin:30px 0}
+  h2{border-bottom:2px solid #ccc;padding-bottom:5px;margin-top:40px;color:#2c3e50}
+  nav{text-align:center;margin-bottom:30px}
+  nav a{margin:0 15px;color:#1976d2;font-weight:bold;text-decoration:none}
+  nav a:hover{text-decoration:underline}
+  .banner-container{width:100%;max-width:960px;height:200px;overflow:hidden;margin:0 auto}
+  .banner-container img{width:100%;height:auto;object-fit:cover;object-position:bottom;transform:translateY(-25%)}
 
-    .banner-container {
-      width: 100%;
-      max-width: 960px;
-      height: 200px;
-      overflow: hidden;
-      margin: 0 auto;
-    }
+  .wrapper{margin-top:40px}
+  .lead{color:var(--muted);margin-bottom:24px}
 
-    .banner-container img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      object-position: bottom;
-      transform: translateY(-25%); /* 显示偏下区域 */
-    }
+  /* Tabs - 明显的 Day 切换 */
+  .tabs{
+    position:relative;display:inline-flex;gap:8px;padding:6px;border-radius:999px;
+    background:#e9f2ff;border:1px solid #b9d4ff;margin-bottom:20px
+  }
+  .tab{
+    position:relative;z-index:1;background:transparent;border:0;padding:14px 28px;border-radius:999px;
+    color:#1f3b73;cursor:pointer;font-weight:600;font-size:18px;transition:color .2s ease
+  }
+  .tab[aria-selected="true"]{color:#0d47a1;font-weight:700}
+  .tabs .indicator{
+    position:absolute;top:6px;left:6px;height:50px;border-radius:999px;background:#bbdefb;
+    box-shadow:0 4px 10px rgba(13,71,161,.12), inset 0 0 0 1px #90caf9;
+    transition:transform .25s,width .25s;will-change:transform,width
+  }
 
-    h1 {
-      text-align: center;
-      color: #1a237e;
-      margin: 30px 0;
-    }
+  .day{display:none}
+  .day.active{display:block}
 
-    h2 {
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 5px;
-      margin-top: 40px;
-      color: #2c3e50;
-    }
+  .date-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:6px 0 10px}
+  .date-title{font-size:20px;font-weight:700}
+  .date-sub{color:var(--muted)}
 
-    nav {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+  .legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-bottom:16px}
+  .legend .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .legend .talk .dot{background:var(--accent)}
+  .legend .panel .dot{background:#607d8b}
+  .legend .break .dot{background:#ff9800}
+  .legend .cafe .dot{background:#9c27b0}
 
-    nav a {
-      margin: 0 15px;
-      color: #1a73e8;
-      font-weight: bold;
-      text-decoration: none;
-    }
+  /* Session 分组 */
+  .session{
+    background:#fff;
+    border:1px solid #e7eef8;
+    border-radius:16px;
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
+    margin:14px 0 18px;
+    overflow:hidden;
+  }
+  .session-header{
+    display:flex;align-items:center;gap:12px;justify-content:space-between;
+    padding:12px 16px;
+    background:#f6faff;
+    border-bottom:1px solid #e7eef8;
+  }
+  .session-title{
+    display:flex;align-items:center;gap:10px;font-weight:800;color:#1f2d3d
+  }
+  .session-time{color:#18407c;font-variant-numeric:tabular-nums;font-weight:700}
+  .session-chair{
+    padding:6px 10px;border-radius:999px;border:1px solid #bfe8d2;background:#f0fff7;color:#1e6b4d;font-size:12px;white-space:nowrap
+  }
+  .session-body{display:flex;flex-direction:column;gap:10px;padding:12px 12px 14px}
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+  /* slot 样式（沿用卡片 + 色带） */
+  .slot{
+    display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:start;
+    background:#ffffff;border-radius:14px;padding:12px 14px;border:1px solid #eef3fb
+  }
+  .slot .time{font-variant-numeric:tabular-nums;font-weight:700;color:#18407c}
+  .slot .meta .title{font-weight:700;line-height:1.35;color:#21324a}
+  .slot .meta .speaker{margin-top:6px;color:#5f6b7a}
+  .slot .meta .team{margin-top:2px;color:#6f7f95;font-size:13px}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-      margin-bottom: 30px;
-      background-color: #fff;
-    }
+  /* 类型背景/边条（更浅） */
+  .slot.talk{border-left:4px solid #4c8bf5}
+  .slot.panel{border-left:4px solid #7a9cff;background:#fbfcff}
+  .slot.break{border-left:4px solid #ffbf7b;background:#fffaf5}
+  .slot.cafe{border-left:4px solid #c8b6ff}
+  .slot.opening,.slot.closing{border-left:4px solid #28c5a5}
 
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px 12px;
-      text-align: left;
-      vertical-align: top;
-    }
+  /* 独立的 break/cafe 卡片（非 session 内） */
+  .solo{padding:12px 14px;border:1px solid #e7eef8;border-left-width:4px;border-radius:14px;background:#fff}
 
-    th {
-      background-color: #e3f2fd;
-      font-weight: bold;
-    }
-
-    ul {
-      margin-left: 20px;
-    }
-
-    .schedule-date {
-      font-size: 1.2em;
-      font-weight: bold;
-      color: #1565c0;
-      margin-top: 20px;
-      margin-bottom: 10px;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 60px;
-      font-size: 0.9em;
-      color: #888;
-    }
-  </style>
+  @media(max-width:720px){
+    .slot{grid-template-columns:1fr}
+  }
+</style>
 </head>
 <body>
+<div class="container">
 
   <div class="banner-container">
     <img src="aip.jpeg" alt="RIKEN LLM Banner">
   </div>
 
-  <h1>RIKEN-AIP Internal Workshop on Large Language Models</h1>
+  <h1>RIKEN AIP Workshop on LLM×ML</h1>
 
   <nav>
     <a href="#dates">Dates and Location</a>
     <a href="#schedule">Schedule</a>
     <a href="#organizers">Organizers</a>
   </nav>
-
-  Co-organized by the Natural Language Understanding and the Imperfect Information Learning teams, this workshop aims to promote exchange between ML researchers interested in LLMs and LLM researchers seeking ML insights, with the goal of sparking new collaborations across teams. It will feature talks, group discussions, and brainstorming sessions on topics such as theory and algorithms, interpretability, open challenges, and impactful applications of ML in LLMs.
 
   <h2 id="dates">Dates and Location</h2>
   <ul>
@@ -122,69 +139,329 @@
     <li><strong>Accessibility:</strong> Open to all RIKEN-affiliated members</li>
   </ul>
 
-<style>
-  table {
-    border-collapse: collapse;
-  }
-  table th, table td {
-    border: 1px solid #ccc;
-    padding: 6px 10px;
-  }
-  table th {
-    background: #f4f4f4;
-  }
-  /* Chair 列居中 */
-  td.chair {
-    text-align: center;
-    vertical-align: middle;
-  }
-</style>
+  <div class="wrapper">
+    <h2 id="schedule">Schedule</h2>
+    <p class="lead">Sessions are grouped as 3 talks + 1 panel. Click a date to switch.</p>
 
-<h2 id="schedule">Schedule</h2>
+    <!-- Tabs -->
+    <div class="tabs" role="tablist" aria-label="Select day">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="day1" id="tab1">Day 1 · October 2, 2025</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="day2" id="tab2">Day 2 · October 3, 2025</button>
+      <span class="indicator" aria-hidden="true"></span>
+    </div>
 
-<div class="schedule-date">Day 1 — October 2nd, 2025</div>
-<table>
-  <tr><th>Time</th><th>Description</th><th>Chair</th></tr>
-  <tr><td>10:30–10:40</td><td>Welcome and Opening Remarks</td><td></td></tr>
-  <tr><td>10:40–11:10</td><td>Title: XXX <br> Speaker: XXX</td><td class="chair" rowspan="4">Chair A</td></tr>
-  <tr><td>11:10–11:40</td><td>Title: XXX <br> Speaker: XXX</td></tr>
-  <tr><td>11:40–12:10</td><td>Title: XXX <br> Speaker: XXX</td></tr>
-  <tr><td>12:10–12:30</td><td>Topic-centered Panel Discussion</td></tr>
-  <tr><td>12:30–13:30</td><td>Discussion over Lunch</td><td></td></tr>
-  <tr><td>13:30–14:00</td><td>Title: XXX <br> Speaker: XXX</td><td class="chair" rowspan="4">Chair B</td></tr>
-  <tr><td>14:00–14:30</td><td>Title: XXX <br> Speaker: XXX</td></tr>
-  <tr><td>14:30–15:00</td><td>Title: XXX <br> Speaker: XXX</td></tr>
-  <tr><td>15:00–15:20</td><td>Topic-centered Panel Discussion</td></tr>
-  <tr><td>15:20–15:40</td><td>Discussion over Tea/Coffee</td><td></td></tr>
-  <tr><td>15:40–16:10</td><td>Title: XXX <br> Speaker: XXX</td><td class="chair" rowspan="4">Chair C</td></tr>
-  <tr><td>16:10–16:40</td><td>Title: XXX <br> Speaker: XXX</td></tr>
-  <tr><td>16:40–17:10</td><td>Title: XXX <br> Speaker: XXX</td></tr>
-  <tr><td>17:10–17:30</td><td>Topic-centered Panel Discussion</td></tr>
-  <tr><td>17:30–18:00</td><td>World Café</td><td></td></tr>
-</table>
+    <!-- Legend -->
+    <div class="legend">
+      <span class="talk"><span class="dot"></span>Talk</span>
+      <span class="panel"><span class="dot"></span>Panel</span>
+      <span class="break"><span class="dot"></span>Break</span>
+      <span class="cafe"><span class="dot"></span>World Café</span>
+    </div>
 
-<div class="schedule-date">Day 2 — October 3rd, 2025</div>
-<table>
-  <tr><th>Time</th><th>Description</th><th>Chair</th></tr>
-  <tr><td>10:30–11:00</td><td>Title: XXX <br> Speaker: XXX</td><td class="chair" rowspan="4">Chair D</td></tr>
-  <tr><td>11:00–11:30</td><td>Title: XXX <br> Speaker: XXX</td></tr>
-  <tr><td>11:30–12:00</td><td>Title: XXX <br> Speaker: XXX</td></tr>
-  <tr><td>12:00–12:20</td><td>Topic-centered Panel Discussion</td></tr>
-  <tr><td>12:20–13:00</td><td>Discussion over Lunch</td><td></td></tr>
-  <tr><td>13:00–13:30</td><td>Title: XXX <br> Speaker: XXX</td><td class="chair" rowspan="4">Chair E</td></tr>
-  <tr><td>13:30–14:00</td><td>Title: XXX <br> Speaker: XXX</td></tr>
-  <tr><td>14:00–14:30</td><td>Title: XXX <br> Speaker: XXX</td></tr>
-  <tr><td>14:30–14:50</td><td>Topic-centered Panel Discussion</td></tr>
-  <tr><td>14:50–15:10</td><td>Discussion over Tea/Coffee</td><td></td></tr>
-  <tr><td>15:10–15:40</td><td>Title: XXX <br> Speaker: XXX</td><td class="chair" rowspan="4">Chair F</td></tr>
-  <tr><td>15:40–16:10</td><td>Title: XXX <br> Speaker: XXX</td></tr>
-  <tr><td>16:10–16:40</td><td>Title: XXX <br> Speaker: XXX</td></tr>
-  <tr><td>16:40–17:00</td><td>Topic-centered Panel Discussion</td></tr>
-  <tr><td>17:00–17:30</td><td>World Café</td><td></td></tr>
-  <tr><td>17:30–17:40</td><td>Closing Remarks</td><td></td></tr>
-</table>
+    <!-- Day 1 -->
+    <section class="day active" id="day1" aria-labelledby="tab1">
+      <div class="date-header"><div class="date-title">Day 1</div><div class="date-sub">October 2, 2025</div></div>
 
+      <!-- Opening (独立条目) -->
+      <div class="solo opening" style="border-left-color:#28c5a5;margin:10px 0">
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">10:30 to 10:40</div>
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Welcome and Opening Remarks</div></div>
+      </div>
 
+      <!-- Session A -->
+      <div class="session">
+        <div class="session-header">
+          <div class="session-title">
+            <span>Session A</span>
+            <span class="session-time">10:40 to 12:30</span>
+          </div>
+          <span class="session-chair">Chair A</span>
+        </div>
+        <div class="session-body">
+          <div class="slot talk">
+            <div class="time">10:40 to 11:10</div>
+            <div class="meta">
+              <div class="title">Interpretability: What do we know and what do we want to know?</div>
+              <div class="speaker">Speaker: Benjamin Heinzerling</div>
+              <div class="team">Natural Language Understanding</div>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">11:10 to 11:40</div>
+            <div class="meta">
+              <div class="title">Understanding Fact Recall in Language Models: Why Mixed Training Teaches Knowledge While Two-Stage Training Encourages Memorization</div>
+              <div class="speaker">Speaker: Ying Zhang</div>
+              <div class="team">Natural Language Understanding</div>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">11:40 to 12:10</div>
+            <div class="meta">
+              <div class="title">TopK Language Models</div>
+              <div class="speaker">Speaker: Ryosuke Takahashi</div>
+              <div class="team">Natural Language Understanding</div>
+            </div>
+          </div>
+          <div class="slot panel">
+            <div class="time">12:10 to 12:30</div>
+            <div class="meta"><div class="title">Topic-centered Panel Discussion</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lunch (独立条目) -->
+      <div class="solo break" style="border-left-color:#ffbf7b;background:#fffaf5;margin:10px 0">
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">12:30 to 13:30</div>
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Lunch</div></div>
+      </div>
+
+      <!-- Session B -->
+      <div class="session">
+        <div class="session-header">
+          <div class="session-title">
+            <span>Session B</span>
+            <span class="session-time">13:30 to 15:20</span>
+          </div>
+          <span class="session-chair">Chair B</span>
+        </div>
+        <div class="session-body">
+          <div class="slot talk">
+            <div class="time">13:30 to 14:00</div>
+            <div class="meta">
+              <div class="title">Select before use: on the importance of base model selection in preference alignment</div>
+              <div class="speaker">Speaker: Muyang Li</div>
+              <div class="team">Imperfect Information Learning</div>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">14:00 to 14:30</div>
+            <div class="meta">
+              <div class="title">In-context Demonstration Matters: On Prompt Optimization for Pseudo-Supervision Refinement</div>
+              <div class="speaker">Speaker: Zhen-Yu Zhang</div>
+              <div class="team">Imperfect Information Learning</div>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">14:30 to 15:00</div>
+            <div class="meta">
+              <div class="title">Physics Informed Large Language Models for Power Grids Optimization</div>
+              <div class="speaker">Speaker: Salah Ghamizi</div>
+              <div class="team">Imperfect Information Learning</div>
+            </div>
+          </div>
+          <div class="slot panel">
+            <div class="time">15:00 to 15:20</div>
+            <div class="meta"><div class="title">Topic-centered Panel Discussion</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tea/Coffee (独立条目) -->
+      <div class="solo break" style="border-left-color:#ffbf7b;background:#fffaf5;margin:10px 0">
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">15:20 to 15:40</div>
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Tea/Coffee</div></div>
+      </div>
+
+      <!-- Session C -->
+      <div class="session">
+        <div class="session-header">
+          <div class="session-title">
+            <span>Session C</span>
+            <span class="session-time">15:40 to 17:30</span>
+          </div>
+          <span class="session-chair">Chair C</span>
+        </div>
+        <div class="session-body">
+          <div class="slot talk">
+            <div class="time">15:40 to 16:10</div>
+            <div class="meta">
+              <div class="title">Trained Mamba Emulates Online Gradient Descent in In-Context Linear Regression</div>
+              <div class="speaker">Speaker: Wei Huang</div>
+              <div class="team">Deep Learning Theory</div>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">16:10 to 16:40</div>
+            <div class="meta">
+              <div class="title">Provable In-Context Learning of Autoregressive Processes under Varying Task Distributions</div>
+              <div class="speaker">Speaker: Hanna Tseran</div>
+              <div class="team">High-Dimensional Structure Theory Team</div>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">16:40 to 17:10</div>
+            <div class="meta">
+              <div class="title">Seeing Is Believing, But How Much? A Comprehensive Analysis of Verbalized Calibration in Vision-Language Models</div>
+              <div class="speaker">Speaker: Weihao Xuan</div>
+              <div class="team">Geoinformatics Team</div>
+            </div>
+          </div>
+          <div class="slot panel">
+            <div class="time">17:10 to 17:30</div>
+            <div class="meta"><div class="title">Topic-centered Panel Discussion</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- World Café (独立条目) -->
+      <div class="solo cafe" style="border-left-color:#c8b6ff;margin:10px 0">
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">17:30 to 18:00</div>
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">World Café</div></div>
+      </div>
+    </section>
+
+    <!-- Day 2 -->
+    <section class="day" id="day2" aria-labelledby="tab2">
+      <div class="date-header"><div class="date-title">Day 2</div><div class="date-sub">October 3, 2025</div></div>
+
+      <!-- Session D -->
+      <div class="session">
+        <div class="session-header">
+          <div class="session-title">
+            <span>Session D</span>
+            <span class="session-time">10:30 to 12:20</span>
+          </div>
+          <span class="session-chair">Chair D</span>
+        </div>
+        <div class="session-body">
+          <div class="slot talk">
+            <div class="time">10:30 to 11:00</div>
+            <div class="meta">
+              <div class="title">Fast Substructure Search on JSONL for Structured RAG</div>
+              <div class="speaker">Speaker: Yasuo Tabei</div>
+              <div class="team">Succinct Information Processing Team</div>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">11:00 to 11:30</div>
+            <div class="meta">
+              <div class="title">Ensemble LLM</div>
+              <div class="speaker">Speaker: Junpei Komiyama</div>
+              <div class="team">Sequential Decision Making Team</div>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">11:30 to 12:00</div>
+            <div class="meta">
+              <div class="title">SPIRIT: Patching Speech Language Models against Jailbreak Attacks <span class="tag online">Online</span></div>
+              <div class="speaker">Speaker: Nurdaulet Mukhituly</div>
+              <div class="team">Natural Language Understanding</div>
+            </div>
+          </div>
+          <div class="slot panel">
+            <div class="time">12:00 to 12:20</div>
+            <div class="meta"><div class="title">Topic-centered Panel Discussion</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lunch -->
+      <div class="solo break" style="border-left-color:#ffbf7b;background:#fffaf5;margin:10px 0">
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">12:20 to 13:00</div>
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Lunch</div></div>
+      </div>
+
+      <!-- Session E -->
+      <div class="session">
+        <div class="session-header">
+          <div class="session-title">
+            <span>Session E</span>
+            <span class="session-time">13:00 to 14:50</span>
+          </div>
+          <span class="session-chair">Chair E</span>
+        </div>
+        <div class="session-body">
+          <div class="slot talk">
+            <div class="time">13:00 to 13:30</div>
+            <div class="meta">
+              <div class="title">Variational Training for Improving and Understanding LLMs</div>
+              <div class="speaker">Speaker: Thomas Möllenhoff</div>
+              <div class="team">Adaptive Bayesian Intelligence</div>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">13:30 to 14:00</div>
+            <div class="meta">
+              <div class="title">Variational Model Merging</div>
+              <div class="speaker">Speaker: Hugo Monzon</div>
+              <div class="team">Adaptive Bayesian Intelligence</div>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">14:00 to 14:30</div>
+            <div class="meta">
+              <div class="title">Real-Time Diagnostics for LLMs</div>
+              <div class="speaker">Speaker: Christopher J. Anders</div>
+              <div class="team">Adaptive Bayesian Intelligence</div>
+            </div>
+          </div>
+          <div class="slot panel">
+            <div class="time">14:30 to 14:50</div>
+            <div class="meta"><div class="title">Topic-centered Panel Discussion</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tea/Coffee -->
+      <div class="solo break" style="border-left-color:#ffbf7b;background:#fffaf5;margin:10px 0">
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">14:50 to 15:10</div>
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Tea/Coffee</div></div>
+      </div>
+
+      <!-- Session F -->
+      <div class="session">
+        <div class="session-header">
+          <div class="session-title">
+            <span>Session F</span>
+            <span class="session-time">15:10 to 17:00</span>
+          </div>
+          <span class="session-chair">Chair F</span>
+        </div>
+        <div class="session-body">
+          <div class="slot talk">
+            <div class="time">15:10 to 15:40</div>
+            <div class="meta">
+              <div class="title">TBD <span class="tag online">Online</span></div>
+              <div class="speaker">Speaker: Hilal AlQuabeh</div>
+              <div class="team">Natural Language Understanding</div>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">15:40 to 16:10</div>
+            <div class="meta">
+              <div class="title">TBD <span class="tag online">Online</span></div>
+              <div class="speaker">Speaker: Tatsuya Hiraoka</div>
+              <div class="team">Natural Language Understanding</div>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">16:10 to 16:40</div>
+            <div class="meta">
+              <div class="title">TBD <span class="tag online">Online</span></div>
+              <div class="speaker">Speaker: Muhammad Cendekia Airlangga</div>
+              <div class="team">Natural Language Understanding</div>
+            </div>
+          </div>
+          <div class="slot panel">
+            <div class="time">16:40 to 17:00</div>
+            <div class="meta"><div class="title">Topic-centered Panel Discussion</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- World Café -->
+      <div class="solo cafe" style="border-left-color:#c8b6ff;margin:10px 0">
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">17:00 to 17:30</div>
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">World Café</div></div>
+      </div>
+
+      <!-- Closing -->
+      <div class="solo closing" style="border-left-color:#28c5a5;margin:10px 0">
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">17:30 to 17:40</div>
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Closing Remarks</div></div>
+      </div>
+    </section>
+  </div>
 
   <h2 id="organizers">Organizers</h2>
   <ul>
@@ -201,5 +478,39 @@
     © 2025 RIKEN LLM Workshop
   </footer>
 
+</div>
+
+<script>
+  const tabs = Array.from(document.querySelectorAll('.tab'));
+  const days = Array.from(document.querySelectorAll('.day'));
+  const indicator = document.querySelector('.tabs .indicator');
+
+  function moveIndicator(active){
+    if(!active || !indicator) return;
+    const r = active.getBoundingClientRect();
+    const pr = active.parentElement.getBoundingClientRect();
+    indicator.style.width = r.width + 'px';
+    indicator.style.transform = `translateX(${r.left - pr.left}px)`;
+  }
+
+  function activate(i){
+    tabs.forEach(b => b.setAttribute('aria-selected','false'));
+    days.forEach(d => d.classList.remove('active'));
+    tabs[i].setAttribute('aria-selected','true');
+    days[i].classList.add('active');
+    moveIndicator(tabs[i]);
+  }
+
+  tabs.forEach((t,i)=>t.addEventListener('click',()=>activate(i)));
+
+  window.addEventListener('load',()=>{
+    const current=document.querySelector('.tab[aria-selected="true"]')||tabs[0];
+    activate(tabs.indexOf(current));
+  });
+  window.addEventListener('resize',()=>{
+    const current=document.querySelector('.tab[aria-selected="true"]')||tabs[0];
+    moveIndicator(current);
+  });
+</script>
 </body>
 </html>
