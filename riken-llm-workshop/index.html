@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>RIKEN LLM Workshop</title>
+<title>RIKEN AIP LLM×ML Workshop</title>
 <style>
   :root{
     --bg:#f9f9f9;
@@ -134,6 +134,31 @@
   .block.break{ background:#fffaf5; }
   .block.cafe{ background:#fff; }
 
+  /* 统一的标签样式 */
+  .tag{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:2px 10px;border-radius:999px;font-weight:800;font-size:12px;
+    letter-spacing:.3px;line-height:1;vertical-align:middle;
+    border:1px solid transparent;
+  }
+
+  /* 在线标记：高对比色 胶囊 阴影 */
+  .tag.online{
+    background:#e6fff5;
+    color:#0a6c4a;
+    border-color:#8ee6c1;
+    box-shadow:0 2px 6px rgba(10,108,74,.15);
+    text-transform:uppercase;
+    position:relative;
+  }
+
+
+  /* 让标题里的 Online 紧跟标题，不拥挤 */
+  .slot .meta .title .tag.online{ margin-left:8px }
+
+  /* 如果想更显眼，可以把整条在线讲座的时间也染色 */
+  .slot.online .time{ color:#0a6c4a }
+
   @media(max-width:720px){
     .slot{grid-template-columns:1fr}
   }
@@ -146,7 +171,7 @@
     <img src="aip.jpeg" alt="RIKEN LLM Banner">
   </div>
 
-  <h1>RIKEN AIP Workshop on LLM×ML</h1>
+  <h1>RIKEN AIP LLM×ML Workshop</h1>
 
   <nav>
     <a href="#dates">Dates and Location</a>
@@ -207,9 +232,9 @@
           <div class="slot talk">
             <div class="time">10:40 ~ 11:10</div>
             <div class="meta">
-              <div class="title">Interpretability: What do we know and what do we want to know?</div>
+              <div class="title">Interpretability: What Do We Know and What Do We Want to Know?</div>
               <div class="speaker">Speaker: Benjamin Heinzerling</div>
-              <div class="team">Natural Language Understanding</div>
+              <div class="team">Natural Language Understanding Team</div>
             </div>
           </div>
           <div class="slot talk">
@@ -217,7 +242,7 @@
             <div class="meta">
               <div class="title">Understanding Fact Recall in Language Models: Why Mixed Training Teaches Knowledge While Two-Stage Training Encourages Memorization</div>
               <div class="speaker">Speaker: Ying Zhang</div>
-              <div class="team">Natural Language Understanding</div>
+              <div class="team">Natural Language Understanding Team</div>
             </div>
           </div>
           <div class="slot talk">
@@ -225,7 +250,7 @@
             <div class="meta">
               <div class="title">TopK Language Models</div>
               <div class="speaker">Speaker: Ryosuke Takahashi</div>
-              <div class="team">Natural Language Understanding</div>
+              <div class="team">Natural Language Understanding Team</div>
             </div>
           </div>
           <div class="slot panel">
@@ -254,9 +279,9 @@
           <div class="slot talk">
             <div class="time">13:30 ~ 14:00</div>
             <div class="meta">
-              <div class="title">Select before use: on the importance of base model selection in preference alignment</div>
+              <div class="title">Select Before Use: On the Importance of Base Model Selection in Preference Alignment</div>
               <div class="speaker">Speaker: Muyang Li</div>
-              <div class="team">Imperfect Information Learning</div>
+              <div class="team">Imperfect Information Learning Team</div>
             </div>
           </div>
           <div class="slot talk">
@@ -264,7 +289,7 @@
             <div class="meta">
               <div class="title">In-context Demonstration Matters: On Prompt Optimization for Pseudo-Supervision Refinement</div>
               <div class="speaker">Speaker: Zhen-Yu Zhang</div>
-              <div class="team">Imperfect Information Learning</div>
+              <div class="team">Imperfect Information Learning Team</div>
             </div>
           </div>
           <div class="slot talk">
@@ -272,7 +297,7 @@
             <div class="meta">
               <div class="title">Physics Informed Large Language Models for Power Grids Optimization</div>
               <div class="speaker">Speaker: Salah Ghamizi</div>
-              <div class="team">Imperfect Information Learning</div>
+              <div class="team">Imperfect Information Learning Team</div>
             </div>
           </div>
           <div class="slot panel">
@@ -301,25 +326,25 @@
           <div class="slot talk">
             <div class="time">15:40 ~ 16:10</div>
             <div class="meta">
-              <div class="title">Trained Mamba Emulates Online Gradient Descent in In-Context Linear Regression</div>
-              <div class="speaker">Speaker: Wei Huang</div>
-              <div class="team">Deep Learning Theory</div>
-            </div>
-          </div>
-          <div class="slot talk">
-            <div class="time">16:10 ~ 16:40</div>
-            <div class="meta">
               <div class="title">Provable In-Context Learning of Autoregressive Processes under Varying Task Distributions</div>
               <div class="speaker">Speaker: Hanna Tseran</div>
               <div class="team">High-Dimensional Structure Theory Team</div>
             </div>
           </div>
           <div class="slot talk">
+            <div class="time">16:10 ~ 16:40</div>
+            <div class="meta">
+              <div class="title">Trained Mamba Emulates Online Gradient Descent in In-Context Linear Regression</div>
+              <div class="speaker">Speaker: Wei Huang</div>
+              <div class="team">Deep Learning Theory Team</div>
+            </div>
+          </div>
+          <div class="slot talk">
             <div class="time">16:40 ~ 17:10</div>
             <div class="meta">
-              <div class="title">Seeing Is Believing, But How Much? A Comprehensive Analysis of Verbalized Calibration in Vision-Language Models</div>
-              <div class="speaker">Speaker: Weihao Xuan</div>
-              <div class="team">Geoinformatics Team</div>
+              <div class="title">Primacy and Recency Effect in Mamba: A Mechanistic Perspective<span class="tag online">Online</span></div>
+              <div class="speaker">Speaker: Muhammad Cendekia Airlangga</div>
+              <div class="team">Natural Language Understanding Team</div>
             </div>
           </div>
           <div class="slot panel">
@@ -371,7 +396,7 @@
             <div class="meta">
               <div class="title">SPIRIT: Patching Speech Language Models against Jailbreak Attacks <span class="tag online">Online</span></div>
               <div class="speaker">Speaker: Nurdaulet Mukhituly</div>
-              <div class="team">Natural Language Understanding</div>
+              <div class="team">Natural Language Understanding Team</div>
             </div>
           </div>
           <div class="slot panel">
@@ -402,7 +427,7 @@
             <div class="meta">
               <div class="title">Variational Training for Improving and Understanding LLMs</div>
               <div class="speaker">Speaker: Thomas Möllenhoff</div>
-              <div class="team">Adaptive Bayesian Intelligence</div>
+              <div class="team">Adaptive Bayesian Intelligence Team</div>
             </div>
           </div>
           <div class="slot talk">
@@ -410,7 +435,7 @@
             <div class="meta">
               <div class="title">Variational Model Merging</div>
               <div class="speaker">Speaker: Hugo Monzon</div>
-              <div class="team">Adaptive Bayesian Intelligence</div>
+              <div class="team">Adaptive Bayesian Intelligence Team</div>
             </div>
           </div>
           <div class="slot talk">
@@ -418,7 +443,7 @@
             <div class="meta">
               <div class="title">Real-Time Diagnostics for LLMs</div>
               <div class="speaker">Speaker: Christopher J. Anders</div>
-              <div class="team">Adaptive Bayesian Intelligence</div>
+              <div class="team">Adaptive Bayesian Intelligence Team</div>
             </div>
           </div>
           <div class="slot panel">
@@ -447,9 +472,9 @@
           <div class="slot talk">
             <div class="time">15:10 ~ 15:40</div>
             <div class="meta">
-              <div class="title">TBD <span class="tag online">Online</span></div>
-              <div class="speaker">Speaker: Hilal AlQuabeh</div>
-              <div class="team">Natural Language Understanding</div>
+              <div class="title">Seeing Is Believing, But How Much? A Comprehensive Analysis of Verbalized Calibration in Vision-Language Models</div>
+              <div class="speaker">Speaker: Weihao Xuan</div>
+              <div class="team">Geoinformatics Team</div>
             </div>
           </div>
           <div class="slot talk">
@@ -457,15 +482,15 @@
             <div class="meta">
               <div class="title">TBD <span class="tag online">Online</span></div>
               <div class="speaker">Speaker: Tatsuya Hiraoka</div>
-              <div class="team">Natural Language Understanding</div>
+              <div class="team">Natural Language Understanding Team</div>
             </div>
           </div>
           <div class="slot talk">
             <div class="time">16:10 ~ 16:40</div>
             <div class="meta">
               <div class="title">TBD <span class="tag online">Online</span></div>
-              <div class="speaker">Speaker: Muhammad Cendekia Airlangga</div>
-              <div class="team">Natural Language Understanding</div>
+              <div class="speaker">Speaker: Hilal AlQuabeh</div>
+              <div class="team">Natural Language Understanding Team</div>
             </div>
           </div>
           <div class="slot panel">
@@ -496,6 +521,11 @@
     <li>Dr. Benjamin Tobias Heinzerling</li>
     <li>Dr. Zhen-Yu Zhang</li>
   </ul>
+
+  For any questions please contact
+  <a href="mailto:zhen-yu.zhang@riken.jp">Zhen-Yu Zhang</a> (zhen-yu.zhang@riken.jp)
+  or
+  <a href="mailto:benjamin.heinzerling@riken.jp">Benjamin T. Heinzerling</a> (benjamin.heinzerling@riken.jp).
 
   <h2>Acknowledgment</h2>
   <p>We gratefully acknowledge support from RIKEN AIP and all participating teams.</p>
