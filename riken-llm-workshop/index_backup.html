@@ -87,7 +87,7 @@
     box-shadow:0 2px 10px rgba(0,0,0,.04);
     margin:14px 0 18px;
     padding:12px 14px;
-    border-left:6px solid transparent;
+    border-left:6px solid transparent; /* 通过颜色修饰类来着色 */
   }
   .block.opening{ border-left-color:#28c5a5; }
   .block.closing{ border-left-color:#28c5a5; }
@@ -152,51 +152,16 @@
     position:relative;
   }
 
+
+  /* 让标题里的 Online 紧跟标题，不拥挤 */
   .slot .meta .title .tag.online{ margin-left:8px }
+
+  /* 如果想更显眼，可以把整条在线讲座的时间也染色 */
   .slot.online .time{ color:#0a6c4a }
+
   @media(max-width:720px){
     .slot{grid-template-columns:1fr}
   }
-
-  .abstract-body {
-  font-size: 14px;
-  font-family: "Helvetica Neue", sans-serif;
-  line-height: 1.6;
-  color: #2b3b4f; /* 你可以换成喜欢的颜色 */
-  }
-
-
-  /* Abstract 折叠样式 */
-  details.abstract{
-    margin-top:10px;
-    border:1px solid #e7eef8;
-    border-radius:12px;
-    background:#f8fbff;
-  }
-  details.abstract[open]{background:#f5f9ff}
-  details.abstract summary{
-    list-style:none;
-    cursor:pointer;
-    user-select:none;
-    padding:2px 12px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-weight:800;
-    color:#0d47a1;
-  }
-  details.abstract summary::-webkit-details-marker{display:none}
-  .abstract-icon{
-    width:18px;height:18px;display:inline-grid;place-items:center;
-    border:1px solid #90caf9;border-radius:4px;background:#e3f2fd;
-    font-size:12px;line-height:1;
-  }
-  details.abstract .abstract-body{
-    padding:10px 12px 14px;
-    color:#2b3b4f;
-  }
-  .abstract-body p{margin:0 0 10px}
-  .abstract-placeholder{color:#6f7f95;font-style:italic}
 </style>
 </head>
 <body>
@@ -216,7 +181,7 @@
 
   <h2 id="dates">Dates and Location</h2>
   <ul>
-    <li><strong>Dates:</strong> October 2 to 3, 2025</li>
+    <li><strong>Dates:</strong> October 2–3, 2025</li>
     <li><strong>Location:</strong> <span class="place">RIKEN AIP Open Space, Tokyo</span>
       <span class="dot">·</span>
       Online (with verification)
@@ -269,12 +234,6 @@
               <div class="title">Interpretability: What Do We Know and What Do We Want to Know?</div>
               <div class="speaker">Speaker: Benjamin Heinzerling</div>
               <div class="team">Natural Language Understanding Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">The first half of the talk will give a high-level overview of the state of the art in LLM interpretability, covering representational analysis, sparse autoencoders, and circuits. The second half will be about the question what the goal of interpretability is (or should be). </p>
-                </div>
-              </details>
             </div>
           </div>
           <div class="slot talk">
@@ -283,12 +242,6 @@
               <div class="title">Understanding Fact Recall in Language Models: Why Mixed Training Teaches Knowledge While Two-Stage Training Encourages Memorization</div>
               <div class="speaker">Speaker: Ying Zhang</div>
               <div class="team">Natural Language Understanding Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Fact recall, the ability of language models (LMs) to retrieve specific factual knowledge, remains a challenging task despite their impressive general capabilities. Common training strategies often struggle to promote robust recall behavior with two-stage training, which first trains a model with fact-storing examples (e.g., factual statements) and then with fact-recalling examples (question–answer pairs), tending to encourage rote memorization rather than generalizable fact retrieval. In contrast, mixed training, which jointly uses both types of examples, has been empirically shown to improve the ability to recall facts, but the underlying mechanisms are still poorly understood. In this work, we investigate how these training strategies affect how model parameters are shaped during training and how these differences relate to their ability to recall facts. Our analysis reveals that mixed training encouraging a larger and more centralized set of shared parameters that are strongly influenced by both fact-storing and fact-recalling examples. These findings suggest that the emergence of parameters may play a key role in enabling LMs to generalize factual knowledge across task formulations.</p>
-                </div>
-              </details>
             </div>
           </div>
           <div class="slot talk">
@@ -297,12 +250,6 @@
               <div class="title">TopK Language Models</div>
               <div class="speaker">Speaker: Ryosuke Takahashi</div>
               <div class="team">Natural Language Understanding Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Add abstract here.</p>
-                </div>
-              </details>
             </div>
           </div>
         </div>
@@ -330,12 +277,6 @@
               <div class="title">Select Before Use: On the Importance of Base Model Selection in Preference Alignment</div>
               <div class="speaker">Speaker: Muyang Li</div>
               <div class="team">Imperfect Information Learning Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">The post-training stage of Large Language Models (LLMs) typically involves Supervised Fine-Tuning (SFT) followed by preference alignment to ensure models to generate safe, helpful, and instruction-aligned content. The SFT model critically serves as both the initialization and reference policy for subsequent preference alignment. However, an essential yet often neglected question is the optimal selection of the SFT checkpoint for this role. In this presentation, we demonstrate that the choice of SFT checkpoint significantly impacts final aligned performance. Furthermore, the conventional practice of selecting the SFT checkpoint with the minimum validation loss often fails to identify the optimal starting point for achieving maximal performance after preference alignment. We attribute this to the fundamental objective conflict between SFT's focus on verbatim fitting and preference alignment's goal of enhancing response discriminability. A naive solution would be exhaustively evaluating all candidate SFT checkpoints through full preference alignment process, which is computationally prohibitive. To this end, we propose Margin Score, a simple, yet efficient metrics for estimating initial discriminability between the chosen and rejected response from the preference data, to efficiently estimate the learning difficulty for adapting a SFT model for preference alignment. Empirical evidence suggests that, using our selected model as reference can gain 23.4% relative increase on length-controlled win rate on the popular Zephyr recipe comparing to existing techniques.</p>
-                </div>
-              </details>
             </div>
           </div>
           <div class="slot talk">
@@ -344,12 +285,6 @@
               <div class="title">In-context Demonstration Matters: On Prompt Optimization for Pseudo-Supervision Refinement</div>
               <div class="speaker">Speaker: Zhen-Yu Zhang</div>
               <div class="team">Imperfect Information Learning Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Add abstract here.</p>
-                </div>
-              </details>
             </div>
           </div>
           <div class="slot talk">
@@ -358,12 +293,6 @@
               <div class="title">Physics Informed Large Language Models for Power Grids Optimization</div>
               <div class="speaker">Speaker: Salah Ghamizi</div>
               <div class="team">Imperfect Information Learning Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Efficiently solving Optimal Power Flow (OPF) problems in power systems is crucial for operational planning and grid management. There is a growing need for scalable algorithms capable of handling the increasing variability, constraints, and uncertainties in modern power networks while providing accurate and fast solutions. To address this, machine learning techniques, particularly Graph Neural Networks (GNNs) have emerged as promising approaches. This work introduces PowerGraph-LLM, the first framework explicitly designed for solving OPF problems using Large Language Models (LLMs). The proposed approach combines graph and tabular representations of power grids to effectively query LLMs, capturing the complex relationships and constraints in power systems. A new implementation of in-context learning and fine-tuning protocols for LLMs is introduced, tailored specifically for the OPF problem. PowerGraph-LLM demonstrates reliable performances using off-the-shelf LLM. Our study reveals the impact of LLM architecture, size, and fine-tuning and demonstrates our framework's ability to handle realistic grid components and constraints.</p>
-                </div>
-              </details>
             </div>
           </div>
         </div>
@@ -391,12 +320,6 @@
               <div class="title">Provable In-Context Learning of Autoregressive Processes under Varying Task Distributions</div>
               <div class="speaker">Speaker: Hanna Tseran</div>
               <div class="team">High-Dimensional Structure Theory Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">In-context learning enables large language models to adapt to tasks directly from input sequences without parameter updates. Despite recent interest, the mechanisms underlying this phenomenon remain poorly understood. This work investigates how transformers implement in-context learning for autoregressive processes. We analyze a two-layer architecture with a linear attention head and a nonlinear fully connected layer trained via gradient descent on the outer layer. Our setup focuses on varying prompt distributions, ensuring robustness across tasks. We prove that the network learns the optimal AR(1) estimator, establish approximation and convergence bounds, and confirm the findings experimentally. These results extend prior analyses to settings with distribution variation across prompts, providing insights into how meta-learning in transformers gives rise to their in-context learning ability.</p>
-                </div>
-              </details>
             </div>
           </div>
           <div class="slot talk">
@@ -405,12 +328,6 @@
               <div class="title">Trained Mamba Emulates Online Gradient Descent in In-Context Linear Regression</div>
               <div class="speaker">Speaker: Wei Huang</div>
               <div class="team">Deep Learning Theory Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">State-space models (SSMs), particularly Mamba, emerge as an efficient Transformer alternative with linear complexity for long-sequence modeling. Recent empirical works demonstrate Mamba's in-context learning (ICL) capabilities competitive with Transformers, a critical capacity for large foundation models. However, theoretical understanding of Mamba’s ICL remains limited, restricting deeper insights into its underlying mechanisms. Even fundamental tasks such as linear regression ICL, widely studied as a standard theoretical benchmark for Transformers, have not been thoroughly analyzed in the context of Mamba. To address this gap, we study the training dynamics of Mamba on the linear regression ICL task. By developing novel techniques tackling non-convex optimization with gradient descent related to Mamba's structure, we establish an exponential convergence rate to ICL solution, and derive a loss bound that is comparable to Transformer's. Importantly, our results reveal that Mamba can perform a variant of online gradient descent to learn the latent function in context. This mechanism is different from that of Transformer, which is typically understood to achieve ICL through gradient descent emulation. The theoretical results are verified by experimental simulation.</p>
-                </div>
-              </details>
             </div>
           </div>
           <div class="slot talk">
@@ -419,12 +336,6 @@
               <div class="title">Primacy and Recency Effect in Mamba: A Mechanistic Perspective<span class="tag online">Online</span></div>
               <div class="speaker">Speaker: Muhammad Cendekia Airlangga</div>
               <div class="team">Natural Language Understanding Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Add abstract here.</p>
-                </div>
-              </details>
             </div>
           </div>
         </div>
@@ -458,12 +369,6 @@
               <div class="title">Fast Substructure Search on JSONL for Structured RAG</div>
               <div class="speaker">Speaker: Yasuo Tabei</div>
               <div class="team">Succinct Information Processing Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Substructure search in JSONL datasets is indispensable for realizing structured Retrieval-Augmented Generation (RAG) in foundation model applications. However, existing methods incur prohibitively high computational costs. In this work, we propose jXBW, a fast substructure search method that introduces a merged tree representation, a succinct data structure based on the extended Burrows–Wheeler Transform, and a three-step search algorithm. Experimental results demonstrate that jXBW achieves up to 4,700× speedup over tree-based methods and more than 6×10⁶× speedup over XML-based processing.</p>
-                </div>
-              </details>
             </div>
           </div>
           <div class="slot talk">
@@ -472,12 +377,6 @@
               <div class="title">Best-of-N Mixtures in the Infinite-N Limit</div>
               <div class="speaker">Speaker: Junpei Komiyama</div>
               <div class="team">Sequential Decision Making Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">We study best-of-$N$ for large language models (LLMs) where the selection is based on majority voting. In particular, we analyze the limit $N \to \infty$, which we denote as \boinf. While this approach achieves impressive performance in the limit, it requires an infinite test-time budget. To address this, we propose an adaptive generation scheme that selects $N$ based on answer agreement, thereby efficiently allocating inference-time computation. Beyond adaptivity, we extend the framework to weighted ensembles of multiple LLMs, showing that such mixtures can outperform any individual model. The optimal ensemble weighting is formulated as a mixed-integer linear program. Extensive experiments demonstrate the effectiveness of our approach: for example, an ensemble of Bo1 accuracy $\le 75\%$ LLMs achieves up to 93\% accuracy on AIME2025.</p>
-                </div>
-              </details>
             </div>
           </div>
           <div class="slot talk">
@@ -486,12 +385,6 @@
               <div class="title">SPIRIT: Patching Speech Language Models against Jailbreak Attacks <span class="tag online">Online</span></div>
               <div class="speaker">Speaker: Nurdaulet Mukhituly</div>
               <div class="team">Natural Language Understanding Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Add abstract here.</p>
-                </div>
-              </details>
             </div>
           </div>
         </div>
@@ -519,12 +412,6 @@
               <div class="title">Variational Training for Improving and Understanding LLMs</div>
               <div class="speaker">Speaker: Thomas Möllenhoff</div>
               <div class="team">Adaptive Bayesian Intelligence Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Add abstract here.</p>
-                </div>
-              </details>
             </div>
           </div>
           <div class="slot talk">
@@ -533,12 +420,6 @@
               <div class="title">Variational Model Merging</div>
               <div class="speaker">Speaker: Hugo Monzon</div>
               <div class="team">Adaptive Bayesian Intelligence Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Add abstract here.</p>
-                </div>
-              </details>
             </div>
           </div>
           <div class="slot talk">
@@ -547,12 +428,6 @@
               <div class="title">Real-Time Diagnostics for LLMs</div>
               <div class="speaker">Speaker: Christopher J. Anders</div>
               <div class="team">Adaptive Bayesian Intelligence Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Add abstract here.</p>
-                </div>
-              </details>
             </div>
           </div>
         </div>
@@ -580,12 +455,6 @@
               <div class="title">Seeing Is Believing, But How Much? A Comprehensive Analysis of Verbalized Calibration in Vision-Language Models</div>
               <div class="speaker">Speaker: Weihao Xuan</div>
               <div class="team">Geoinformatics Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Uncertainty quantification is essential for assessing the reliability and trustworthiness of modern AI systems. Among existing approaches, verbalized uncertainty, where models express their confidence through natural language, has emerged as a lightweight and interpretable solution in large language models (LLMs). However, its effectiveness in vision-language models (VLMs) remains insufficiently studied. In this work, we conduct a comprehensive evaluation of verbalized confidence in VLMs, spanning three model categories, four task domains, and three evaluation scenarios. Our results show that current VLMs often display notable miscalibration across diverse tasks and settings. Notably, visual reasoning models (i.e., thinking with images) consistently exhibit better calibration, suggesting that modality-specific reasoning is critical for reliable uncertainty estimation. To further address calibration challenges, we introduce Visual Confidence-Aware Prompting, a two-stage prompting strategy that improves confidence alignment in multimodal settings. Overall, our study highlights the inherent miscalibration in VLMs across modalities. More broadly, our findings underscore the fundamental importance of modality alignment and model faithfulness in advancing reliable multimodal systems.</p>
-                </div>
-              </details>
             </div>
           </div>
           <div class="slot talk">
@@ -594,12 +463,6 @@
               <div class="title">Mechanistic Insights into Grokking from the Embedding Layer</div>
               <div class="speaker">Speaker: Hilal AlQuabeh</div>
               <div class="team">Natural Language Understanding Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Grokking, a delayed generalization in neural networks after perfect training performance, has been observed in Transformers and MLPs, but the components driving it remain underexplored. We show that embeddings are central to grokking: introducing them into MLPs induces delayed generalization in modular arithmetic tasks, whereas MLPs without embeddings can generalize immediately. Our analysis identifies two key mechanisms: (1) Embedding update dynamics, where rare tokens stagnate due to sparse gradient updates and weight decay, and (2) Bilinear coupling, where the interaction between embeddings and downstream weights introduces saddle points and increases sensitivity to initialization. To confirm these mechanisms, we investigate frequency-aware sampling, which balances token updates by minimizing gradient variance, and embedding-specific learning rates, derived from the asymmetric curvature of the bilinear loss landscape. We prove that an adaptive learning rate ratio, (\frac{\eta_E}{\eta_W} \propto \frac{\sigma_{\max}(E)}{\sigma_{\max}(W)} \cdot \frac{f_W}{f_E}), mitigates bilinear coupling effects, accelerating convergence. Our methods not only improve grokking dynamics but also extend to broader challenges in Transformer optimization, where bilinear interactions hinder efficient training.</p>
-                </div>
-              </details>
             </div>
           </div>
           <div class="slot talk">
@@ -608,16 +471,11 @@
               <div class="title">Interpretting LLM's Processing of Various Inputs: Repetition, Typo, and Spelling-out<span class="tag online">Online</span></div>
               <div class="speaker">Speaker: Tatsuya Hiraoka</div>
               <div class="team">Natural Language Understanding Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Add abstract here.</p>
-                </div>
-              </details>
             </div>
           </div>
         </div>
       </div>
+
 
       <!-- Closing -->
       <div class="block closing">
@@ -680,14 +538,6 @@
     const current=document.querySelector('.tab[aria-selected="true"]')||tabs[0];
     moveIndicator(current);
   });
-
-  // Abstract summary icon toggle
-  document.addEventListener('toggle', (e) => {
-    if (e.target.matches('details.abstract')) {
-      const icon = e.target.querySelector('.abstract-icon');
-      if (icon) icon.textContent = e.target.open ? '－' : '＋';
-    }
-  }, true);
 </script>
 </body>
 </html>
