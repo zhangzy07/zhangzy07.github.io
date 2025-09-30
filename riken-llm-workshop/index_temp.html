@@ -308,13 +308,13 @@
           <div class="slot talk">
             <div class="time">11:55 ~ 12:30</div>
             <div class="meta">
-              <div class="title">SPIRIT: Patching Speech Language Models against Jailbreak Attacks <span class="tag online">Online</span></div>
-              <div class="speaker">Speaker: Nurdaulet Mukhituly</div>
+              <div class="title">Mechanistic Insights into Grokking from the Embedding Layer</div>
+              <div class="speaker">Speaker: Hilal AlQuabeh</div>
               <div class="team">Natural Language Understanding Team</div>
               <details class="abstract">
                 <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
                 <div class="abstract-body">
-                  <p class="abstract-placeholder">Add abstract here.</p>
+                  <p class="abstract-placeholder">Grokking, a delayed generalization in neural networks after perfect training performance, has been observed in Transformers and MLPs, but the components driving it remain underexplored. We show that embeddings are central to grokking: introducing them into MLPs induces delayed generalization in modular arithmetic tasks, whereas MLPs without embeddings can generalize immediately. Our analysis identifies two key mechanisms: (1) Embedding update dynamics, where rare tokens stagnate due to sparse gradient updates and weight decay, and (2) Bilinear coupling, where the interaction between embeddings and downstream weights introduces saddle points and increases sensitivity to initialization. To confirm these mechanisms, we investigate frequency-aware sampling, which balances token updates by minimizing gradient variance, and embedding-specific learning rates, derived from the asymmetric curvature of the bilinear loss landscape. We prove that an adaptive learning rate ratio, (\frac{\eta_E}{\eta_W} \propto \frac{\sigma_{\max}(E)}{\sigma_{\max}(W)} \cdot \frac{f_W}{f_E}), mitigates bilinear coupling effects, accelerating convergence. Our methods not only improve grokking dynamics but also extend to broader challenges in Transformer optimization, where bilinear interactions hinder efficient training.</p>
                 </div>
               </details>
             </div>
@@ -497,13 +497,13 @@
           <div class="slot talk">
             <div class="time">11:10 ~ 11:45</div>
             <div class="meta">
-              <div class="title">Mechanistic Insights into Grokking from the Embedding Layer</div>
-              <div class="speaker">Speaker: Hilal AlQuabeh</div>
+              <div class="title">SPIRIT: Patching Speech Language Models against Jailbreak Attacks <span class="tag online">Online</span></div>
+              <div class="speaker">Speaker: Nurdaulet Mukhituly</div>
               <div class="team">Natural Language Understanding Team</div>
               <details class="abstract">
                 <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
                 <div class="abstract-body">
-                  <p class="abstract-placeholder">Grokking, a delayed generalization in neural networks after perfect training performance, has been observed in Transformers and MLPs, but the components driving it remain underexplored. We show that embeddings are central to grokking: introducing them into MLPs induces delayed generalization in modular arithmetic tasks, whereas MLPs without embeddings can generalize immediately. Our analysis identifies two key mechanisms: (1) Embedding update dynamics, where rare tokens stagnate due to sparse gradient updates and weight decay, and (2) Bilinear coupling, where the interaction between embeddings and downstream weights introduces saddle points and increases sensitivity to initialization. To confirm these mechanisms, we investigate frequency-aware sampling, which balances token updates by minimizing gradient variance, and embedding-specific learning rates, derived from the asymmetric curvature of the bilinear loss landscape. We prove that an adaptive learning rate ratio, (\frac{\eta_E}{\eta_W} \propto \frac{\sigma_{\max}(E)}{\sigma_{\max}(W)} \cdot \frac{f_W}{f_E}), mitigates bilinear coupling effects, accelerating convergence. Our methods not only improve grokking dynamics but also extend to broader challenges in Transformer optimization, where bilinear interactions hinder efficient training.</p>
+                  <p class="abstract-placeholder">Add abstract here.</p>
                 </div>
               </details>
             </div>
@@ -511,15 +511,16 @@
           <div class="slot talk">
             <div class="time">11:45 ~ 12:20</div>
             <div class="meta">
-              <div class="title">Interpretting LLM's Processing of Various Inputs: Repetition, Typo, and Spelling-out<span class="tag online">Online</span></div>
-              <div class="speaker">Speaker: Tatsuya Hiraoka</div>
-              <div class="team">Natural Language Understanding Team</div>
+              <div class="title">Seeing Is Believing, But How Much? A Comprehensive Analysis of Verbalized Calibration in Vision-Language Models</div>
+              <div class="speaker">Speaker: Weihao Xuan</div>
+              <div class="team">Geoinformatics Team</div>
               <details class="abstract">
                 <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
                 <div class="abstract-body">
-                  <p class="abstract-placeholder">Add abstract here.</p>
+                  <p class="abstract-placeholder">Uncertainty quantification is essential for assessing the reliability and trustworthiness of modern AI systems. Among existing approaches, verbalized uncertainty, where models express their confidence through natural language, has emerged as a lightweight and interpretable solution in large language models (LLMs). However, its effectiveness in vision-language models (VLMs) remains insufficiently studied. In this work, we conduct a comprehensive evaluation of verbalized confidence in VLMs, spanning three model categories, four task domains, and three evaluation scenarios. Our results show that current VLMs often display notable miscalibration across diverse tasks and settings. Notably, visual reasoning models (i.e., thinking with images) consistently exhibit better calibration, suggesting that modality-specific reasoning is critical for reliable uncertainty estimation. To further address calibration challenges, we introduce Visual Confidence-Aware Prompting, a two-stage prompting strategy that improves confidence alignment in multimodal settings. Overall, our study highlights the inherent miscalibration in VLMs across modalities. More broadly, our findings underscore the fundamental importance of modality alignment and model faithfulness in advancing reliable multimodal systems.</p>
                 </div>
-              </details>  
+            </details>
+              
             </div>
           </div>
         </div>
@@ -606,15 +607,15 @@
           <div class="slot talk">
             <div class="time">16:45 ~ 17:20</div>
             <div class="meta">
-            <div class="title">Seeing Is Believing, But How Much? A Comprehensive Analysis of Verbalized Calibration in Vision-Language Models</div>
-              <div class="speaker">Speaker: Weihao Xuan</div>
-              <div class="team">Geoinformatics Team</div>
+              <div class="title">Interpretting LLM's Processing of Various Inputs: Repetition, Typo, and Spelling-out<span class="tag online">Online</span></div>
+              <div class="speaker">Speaker: Tatsuya Hiraoka</div>
+              <div class="team">Natural Language Understanding Team</div>
               <details class="abstract">
                 <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
                 <div class="abstract-body">
-                  <p class="abstract-placeholder">Uncertainty quantification is essential for assessing the reliability and trustworthiness of modern AI systems. Among existing approaches, verbalized uncertainty, where models express their confidence through natural language, has emerged as a lightweight and interpretable solution in large language models (LLMs). However, its effectiveness in vision-language models (VLMs) remains insufficiently studied. In this work, we conduct a comprehensive evaluation of verbalized confidence in VLMs, spanning three model categories, four task domains, and three evaluation scenarios. Our results show that current VLMs often display notable miscalibration across diverse tasks and settings. Notably, visual reasoning models (i.e., thinking with images) consistently exhibit better calibration, suggesting that modality-specific reasoning is critical for reliable uncertainty estimation. To further address calibration challenges, we introduce Visual Confidence-Aware Prompting, a two-stage prompting strategy that improves confidence alignment in multimodal settings. Overall, our study highlights the inherent miscalibration in VLMs across modalities. More broadly, our findings underscore the fundamental importance of modality alignment and model faithfulness in advancing reliable multimodal systems.</p>
+                  <p class="abstract-placeholder">Add abstract here.</p>
                 </div>
-            </details>
+              </details>  
             </div>
           </div>
         </div>
