@@ -250,7 +250,7 @@
       <!-- Opening -->
       <div class="block opening">
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Welcome and Opening Remarks</div></div>
-        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">10:00 ~ 10:10</div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">10:00 ~ 10:15</div>
       </div>
 
       <!-- Session A -->
@@ -258,13 +258,13 @@
         <div class="session-header">
           <div class="session-title">
             <span>Session A</span>
-            <span class="session-time">10:10 ~ 12:30</span>
+            <span class="session-time">10:15 ~ 12:00</span>
           </div>
           <span class="session-chair">Session Chair: Zhen-Yu Zhang</span>
         </div>
         <div class="session-body">
           <div class="slot talk">
-            <div class="time">10:10 ~ 10:45</div>
+            <div class="time">10:15 ~ 10:50</div>
             <div class="meta">
               <div class="title">Interpretability: What Do We Know and What Do We Want to Know?</div>
               <div class="speaker">Speaker: Benjamin Heinzerling</div>
@@ -278,7 +278,7 @@
             </div>
           </div>
           <div class="slot talk">
-            <div class="time">10:45 ~ 11:20</div>
+            <div class="time">10:50 ~ 11:25</div>
             <div class="meta">
               <div class="title">Understanding Fact Recall in Language Models: Why Mixed Training Teaches Knowledge While Two-Stage Training Encourages Memorization</div>
               <div class="speaker">Speaker: Ying Zhang</div>
@@ -292,7 +292,7 @@
             </div>
           </div>
           <div class="slot talk">
-            <div class="time">11:20 ~ 11:55</div>
+            <div class="time">11:25 ~ 12:00</div>
             <div class="meta">
               <div class="title">TopK Language Models</div>
               <div class="speaker">Speaker: Ryosuke Takahashi</div>
@@ -305,27 +305,13 @@
               </details>
             </div>
           </div>
-          <div class="slot talk">
-            <div class="time">11:55 ~ 12:30</div>
-            <div class="meta">
-              <div class="title">Mechanistic Insights into Grokking from the Embedding Layer</div>
-              <div class="speaker">Speaker: Hilal AlQuabeh</div>
-              <div class="team">Natural Language Understanding Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Grokking, a delayed generalization in neural networks after perfect training performance, has been observed in Transformers and MLPs, but the components driving it remain underexplored. We show that embeddings are central to grokking: introducing them into MLPs induces delayed generalization in modular arithmetic tasks, whereas MLPs without embeddings can generalize immediately. Our analysis identifies two key mechanisms: (1) Embedding update dynamics, where rare tokens stagnate due to sparse gradient updates and weight decay, and (2) Bilinear coupling, where the interaction between embeddings and downstream weights introduces saddle points and increases sensitivity to initialization. To confirm these mechanisms, we investigate frequency-aware sampling, which balances token updates by minimizing gradient variance, and embedding-specific learning rates, derived from the asymmetric curvature of the bilinear loss landscape. We prove that an adaptive learning rate ratio, (\frac{\eta_E}{\eta_W} \propto \frac{\sigma_{\max}(E)}{\sigma_{\max}(W)} \cdot \frac{f_W}{f_E}), mitigates bilinear coupling effects, accelerating convergence. Our methods not only improve grokking dynamics but also extend to broader challenges in Transformer optimization, where bilinear interactions hinder efficient training.</p>
-                </div>
-              </details>
-            </div>
-          </div>
         </div>
       </div>
 
       <!-- Lunch -->
       <div class="block break">
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Lunch</div></div>
-        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">12:30 ~ 13:30</div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">12:00 ~ 13:30</div>
       </div>
 
       <!-- Session B -->
@@ -396,7 +382,7 @@
             <span>Session C</span>
             <span class="session-time">16:00 ~ 17:45</span>
           </div>
-          <span class="session-chair">Session Chair: Yuning Qiu</span>
+          <span class="session-chair">Session Chair: C</span>
         </div>
         <div class="session-body">
           <div class="slot talk">
@@ -497,102 +483,6 @@
           <div class="slot talk">
             <div class="time">11:10 ~ 11:45</div>
             <div class="meta">
-              <div class="title">Seeing Is Believing, But How Much? A Comprehensive Analysis of Verbalized Calibration in Vision-Language Models</div>
-              <div class="speaker">Speaker: Weihao Xuan</div>
-              <div class="team">Geoinformatics Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Uncertainty quantification is essential for assessing the reliability and trustworthiness of modern AI systems. Among existing approaches, verbalized uncertainty, where models express their confidence through natural language, has emerged as a lightweight and interpretable solution in large language models (LLMs). However, its effectiveness in vision-language models (VLMs) remains insufficiently studied. In this work, we conduct a comprehensive evaluation of verbalized confidence in VLMs, spanning three model categories, four task domains, and three evaluation scenarios. Our results show that current VLMs often display notable miscalibration across diverse tasks and settings. Notably, visual reasoning models (i.e., thinking with images) consistently exhibit better calibration, suggesting that modality-specific reasoning is critical for reliable uncertainty estimation. To further address calibration challenges, we introduce Visual Confidence-Aware Prompting, a two-stage prompting strategy that improves confidence alignment in multimodal settings. Overall, our study highlights the inherent miscalibration in VLMs across modalities. More broadly, our findings underscore the fundamental importance of modality alignment and model faithfulness in advancing reliable multimodal systems.</p>
-                </div>
-            </details>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Lunch -->
-      <div class="block break">
-        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Lunch</div></div>
-        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">11:45 ~ 12:30</div>
-      </div>
-
-      <!-- Session E -->
-      <div class="block session">
-        <div class="session-header">
-          <div class="session-title">
-            <span>Session E</span>
-            <span class="session-time">12:30 ~ 13:40</span>
-          </div>
-          <span class="session-chair">Session Chair: E</span>
-        </div>
-        <div class="session-body">
-          <div class="slot talk">
-            <div class="time">12:30 ~ 13:05</div>
-            <div class="meta">
-              <div class="title">Variational Training for Improving and Understanding LLMs</div>
-              <div class="speaker">Speaker: Thomas Möllenhoff</div>
-              <div class="team">Adaptive Bayesian Intelligence Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Add abstract here.</p>
-                </div>
-              </details>
-            </div>
-          </div>
-          <div class="slot talk">
-            <div class="time">13:05 ~ 13:40</div>
-            <div class="meta">
-              <div class="title">Variational Model Merging</div>
-              <div class="speaker">Speaker: Hugo Monzon</div>
-              <div class="team">Adaptive Bayesian Intelligence Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Add abstract here.</p>
-                </div>
-              </details>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-
-      <!-- Tea/Coffee -->
-      <div class="block break">
-        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Tea/Coffee</div></div>
-        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">13:40 ~ 14:30</div>
-      </div>
-
-      <!-- Session F -->
-      <div class="block session">
-        <div class="session-header">
-          <div class="session-title">
-            <span>Session F</span>
-            <span class="session-time">14:30 ~ 15:40</span>
-          </div>
-          <span class="session-chair">Session Chair: F</span>
-        </div>
-        <div class="session-body">
-          
-          <div class="slot talk">
-            <div class="time">14:30 ~ 15:05</div>
-            <div class="meta">
-              <div class="title">Real-Time Diagnostics for LLMs</div>
-              <div class="speaker">Speaker: Christopher J. Anders</div>
-              <div class="team">Adaptive Bayesian Intelligence Team</div>
-              <details class="abstract">
-                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
-                <div class="abstract-body">
-                  <p class="abstract-placeholder">Add abstract here.</p>
-                </div>
-              </details>
-            </div>
-          </div>
-          <div class="slot talk">
-            <div class="time">15:05 ~ 15:40</div>
-            <div class="meta">
               <div class="title">SPIRIT: Patching Speech Language Models against Jailbreak Attacks <span class="tag online">Online</span></div>
               <div class="speaker">Speaker: Nurdaulet Mukhituly</div>
               <div class="team">Natural Language Understanding Team</div>
@@ -607,10 +497,71 @@
         </div>
       </div>
 
+      <!-- Lunch -->
+      <div class="block break">
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Lunch</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">11:45 ~ 12:45</div>
+      </div>
+
+      <!-- Session E -->
+      <div class="block session">
+        <div class="session-header">
+          <div class="session-title">
+            <span>Session E</span>
+            <span class="session-time">12:45 ~ 14:30</span>
+          </div>
+          <span class="session-chair">Session Chair: E</span>
+        </div>
+        <div class="session-body">
+          <div class="slot talk">
+            <div class="time">12:45 ~ 13:20</div>
+            <div class="meta">
+              <div class="title">Variational Training for Improving and Understanding LLMs</div>
+              <div class="speaker">Speaker: Thomas Möllenhoff</div>
+              <div class="team">Adaptive Bayesian Intelligence Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Add abstract here.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">13:20 ~ 13:55</div>
+            <div class="meta">
+              <div class="title">Variational Model Merging</div>
+              <div class="speaker">Speaker: Hugo Monzon</div>
+              <div class="team">Adaptive Bayesian Intelligence Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Add abstract here.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">13:55 ~ 14:30</div>
+            <div class="meta">
+              <div class="title">Real-Time Diagnostics for LLMs</div>
+              <div class="speaker">Speaker: Christopher J. Anders</div>
+              <div class="team">Adaptive Bayesian Intelligence Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Add abstract here.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Tea/Coffee -->
       <div class="block break">
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Tea/Coffee</div></div>
-        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">15:40 ~ 16:00</div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">14:30 ~ 15:00</div>
       </div>
 
       <!-- Session F -->
@@ -618,13 +569,41 @@
         <div class="session-header">
           <div class="session-title">
             <span>Session F</span>
-            <span class="session-time">16:00 ~ 16:35</span>
+            <span class="session-time">15:00 ~ 16:45</span>
           </div>
           <span class="session-chair">Session Chair: F</span>
         </div>
         <div class="session-body">
           <div class="slot talk">
-            <div class="time">16:00 ~ 16:35</div>
+            <div class="time">15:00 ~ 15:35</div>
+            <div class="meta">
+              <div class="title">Seeing Is Believing, But How Much? A Comprehensive Analysis of Verbalized Calibration in Vision-Language Models</div>
+              <div class="speaker">Speaker: Weihao Xuan</div>
+              <div class="team">Geoinformatics Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Uncertainty quantification is essential for assessing the reliability and trustworthiness of modern AI systems. Among existing approaches, verbalized uncertainty, where models express their confidence through natural language, has emerged as a lightweight and interpretable solution in large language models (LLMs). However, its effectiveness in vision-language models (VLMs) remains insufficiently studied. In this work, we conduct a comprehensive evaluation of verbalized confidence in VLMs, spanning three model categories, four task domains, and three evaluation scenarios. Our results show that current VLMs often display notable miscalibration across diverse tasks and settings. Notably, visual reasoning models (i.e., thinking with images) consistently exhibit better calibration, suggesting that modality-specific reasoning is critical for reliable uncertainty estimation. To further address calibration challenges, we introduce Visual Confidence-Aware Prompting, a two-stage prompting strategy that improves confidence alignment in multimodal settings. Overall, our study highlights the inherent miscalibration in VLMs across modalities. More broadly, our findings underscore the fundamental importance of modality alignment and model faithfulness in advancing reliable multimodal systems.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">15:35 ~ 16:10</div>
+            <div class="meta">
+              <div class="title">Mechanistic Insights into Grokking from the Embedding Layer</div>
+              <div class="speaker">Speaker: Hilal AlQuabeh</div>
+              <div class="team">Natural Language Understanding Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Grokking, a delayed generalization in neural networks after perfect training performance, has been observed in Transformers and MLPs, but the components driving it remain underexplored. We show that embeddings are central to grokking: introducing them into MLPs induces delayed generalization in modular arithmetic tasks, whereas MLPs without embeddings can generalize immediately. Our analysis identifies two key mechanisms: (1) Embedding update dynamics, where rare tokens stagnate due to sparse gradient updates and weight decay, and (2) Bilinear coupling, where the interaction between embeddings and downstream weights introduces saddle points and increases sensitivity to initialization. To confirm these mechanisms, we investigate frequency-aware sampling, which balances token updates by minimizing gradient variance, and embedding-specific learning rates, derived from the asymmetric curvature of the bilinear loss landscape. We prove that an adaptive learning rate ratio, (\frac{\eta_E}{\eta_W} \propto \frac{\sigma_{\max}(E)}{\sigma_{\max}(W)} \cdot \frac{f_W}{f_E}), mitigates bilinear coupling effects, accelerating convergence. Our methods not only improve grokking dynamics but also extend to broader challenges in Transformer optimization, where bilinear interactions hinder efficient training.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">16:10 ~ 16:45</div>
             <div class="meta">
               <div class="title">Interpretting LLM's Processing of Various Inputs: Repetition, Typo, and Spelling-out<span class="tag online">Online</span></div>
               <div class="speaker">Speaker: Tatsuya Hiraoka</div>
@@ -634,7 +613,7 @@
                 <div class="abstract-body">
                   <p class="abstract-placeholder">Add abstract here.</p>
                 </div>
-              </details>  
+              </details>
             </div>
           </div>
         </div>
@@ -643,7 +622,7 @@
       <!-- Closing -->
       <div class="block closing">
         <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Closing Remarks</div></div>
-        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">16:35 ~ 16:40</div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">16:45 ~ 16:55</div>
       </div>
     </section>
   </div>
