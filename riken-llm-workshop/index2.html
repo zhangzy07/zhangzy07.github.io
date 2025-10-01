@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RIKEN AIP LLM×ML Workshop</title>
+<style>
+  :root{
+    --bg:#f9f9f9;
+    --card:#ffffff;
+    --ink:#333;
+    --muted:#555;
+    --accent:#1976d2;
+    --accent-2:#2e7d32;
+    --break:#fff3e0;
+    --panel:#f1f5ff;
+    --shadow:0 4px 12px rgba(0,0,0,.08);
+    --radius:14px;
+  }
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Helvetica Neue",sans-serif;
+    margin:0;
+    padding:0 20px;
+    display:flex;
+    justify-content:center;
+  }
+  .container{width:100%;max-width:960px}
+  h1{text-align:center;color:#1a237e;margin:30px 0}
+  h2{border-bottom:2px solid #ccc;padding-bottom:5px;margin-top:40px;color:#2c3e50}
+  nav{text-align:center;margin-bottom:30px}
+  nav a{margin:0 15px;color:#1976d2;font-weight:700;text-decoration:none}
+  nav a:hover{text-decoration:underline}
+  .banner-container{width:100%;max-width:960px;height:200px;overflow:hidden;margin:0 auto}
+  .banner-container img{width:100%;height:auto;object-fit:cover;object-position:bottom;transform:translateY(-25%)}
+
+  .wrapper{margin-top:40px}
+  .lead{color:var(--muted);margin-bottom:24px}
+
+  /* 位置与按钮 */
+  .location-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;}
+  .location-row .place::before{content:"📍 ";}
+  .location-row .dot{ color:#999; margin:0 4px; }
+  .online-badge{padding:2px 8px;border-radius:999px;background:#f0fff7;border:1px solid #bfe8d2;color:#1e6b4d;font-size:12px;}
+  .btn-zoom{
+    display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:10px;background:#e9f2ff;border:1px solid #b9d4ff;color:#0d47a1;text-decoration:none;font-weight:600;
+  }
+  .btn-zoom:hover{ background:#dfe7ff; }
+  .btn-zoom:focus-visible{ outline:2px solid #0d47a1; outline-offset:2px; }
+
+  /* Tabs */
+  .tabs{
+    position:relative;display:inline-flex;gap:8px;padding:6px;border-radius:999px;
+    background:#e9f2ff;border:1px solid #b9d4ff;margin-bottom:20px
+  }
+  .tab{
+    position:relative;z-index:1;background:transparent;border:0;padding:14px 28px;border-radius:999px;
+    color:#1f3b73;cursor:pointer;font-weight:700;font-size:18px;transition:color .2s ease
+  }
+  .tab[aria-selected="true"]{color:#0d47a1}
+  .tabs .indicator{
+    position:absolute;top:6px;left:6px;height:50px;border-radius:999px;background:#bbdefb;
+    box-shadow:0 4px 10px rgba(13,71,161,.12), inset 0 0 0 1px #90caf9;
+    transition:transform .25s,width .25s;will-change:transform,width
+  }
+
+  .day{display:none}
+  .day.active{display:block}
+
+  .date-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:6px 0 10px}
+  .date-title{font-size:20px;font-weight:700}
+  .date-sub{color:var(--muted)}
+
+  .legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-bottom:16px}
+  .legend .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .legend .talk .dot{background:var(--accent)}
+  .legend .panel .dot{background:#e3f2fd}
+  .legend .break .dot{background:#ff9800}
+  .legend .cafe .dot{background:#9c27b0}
+
+  /* 统一的圆润左侧高亮条纹块：solo 和 session 全部使用 */
+  .block{
+    background:#fff;
+    border:1px solid #e7eef8;
+    border-radius:14px;
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
+    margin:14px 0 18px;
+    padding:12px 14px;
+    border-left:6px solid transparent;
+  }
+  .block.opening{ border-left-color:#28c5a5; }
+  .block.closing{ border-left-color:#28c5a5; }
+  .block.break{ border-left-color:#ffbf7b; background:#fff; }
+  .block.cafe{ border-left-color:#c8b6ff; }
+  .block.session{ border-left-color:var(--accent); }
+
+  /* session 内部结构 */
+  .session-header{
+    display:flex;align-items:center;gap:12px;justify-content:space-between;
+    padding:6px 2px 12px;
+    border-bottom:1px solid #e7eef8;
+  }
+  .session-title{
+    display:flex;align-items:center;gap:10px;font-weight:800;color:#1f2d3d
+  }
+  .session-time{color:#18407c;font-variant-numeric:tabular-nums;font-weight:700}
+  .session-chair{
+    padding:6px 10px;border-radius:999px;border:1px solid #bfe8d2;background:#f0fff7;color:#1e6b4d;font-size:12px;white-space:nowrap
+  }
+  .session-body{display:flex;flex-direction:column;gap:0;padding:8px 0 0}
+
+  /* slot：去掉 talk 的左条，改用轻分隔线连接 */
+  .slot{
+    display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:start;
+    background:transparent;border:0;padding:10px 4px;
+  }
+  .slot + .slot{border-top:1px solid #eef3fb;}
+  .slot .time{font-variant-numeric:tabular-nums;font-weight:700;color:#18407c}
+  .slot .meta .title{font-weight:700;line-height:1.35;color:#21324a}
+  .slot .meta .speaker{margin-top:6px;color:#5f6b7a}
+  .slot .meta .team{margin-top:2px;color:#6f7f95;font-size:13px}
+
+  /* panel 轻背景，保持圆润感觉 */
+  .slot.panel{
+    background:#e3f2fd;
+    border-radius:12px;
+    padding:12px;
+    margin-top:10px;
+    box-shadow:inset 0 0 0 1px #eef3fb;
+  }
+
+  /* 独立的 block 仍可按需加背景色 */
+  .block.break{ background:#fffaf5; }
+  .block.cafe{ background:#fff; }
+
+  /* 统一的标签样式 */
+  .tag{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:2px 10px;border-radius:999px;font-weight:800;font-size:12px;
+    letter-spacing:.3px;line-height:1;vertical-align:middle;
+    border:1px solid transparent;
+  }
+
+  /* 在线标记：高对比色 胶囊 阴影 */
+  .tag.online{
+    background:#e6fff5;
+    color:#0a6c4a;
+    border-color:#8ee6c1;
+    box-shadow:0 2px 6px rgba(10,108,74,.15);
+    text-transform:uppercase;
+    position:relative;
+  }
+
+  .slot .meta .title .tag.online{ margin-left:8px }
+  .slot.online .time{ color:#0a6c4a }
+  @media(max-width:720px){
+    .slot{grid-template-columns:1fr}
+  }
+
+  .abstract-body {
+  font-size: 14px;
+  font-family: "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+  color: #2b3b4f; /* 你可以换成喜欢的颜色 */
+  }
+
+
+  /* Abstract 折叠样式 */
+  details.abstract{
+    margin-top:10px;
+    border:1px solid #e7eef8;
+    border-radius:12px;
+    background:#f8fbff;
+  }
+  details.abstract[open]{background:#f5f9ff}
+  details.abstract summary{
+    list-style:none;
+    cursor:pointer;
+    user-select:none;
+    padding:2px 12px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:800;
+    color:#0d47a1;
+  }
+  details.abstract summary::-webkit-details-marker{display:none}
+  .abstract-icon{
+    width:18px;height:18px;display:inline-grid;place-items:center;
+    border:1px solid #90caf9;border-radius:4px;background:#e3f2fd;
+    font-size:12px;line-height:1;
+  }
+  details.abstract .abstract-body{
+    padding:10px 12px 14px;
+    color:#2b3b4f;
+  }
+  .abstract-body p{margin:0 0 10px}
+  .abstract-placeholder{color:#6f7f95;font-style:italic}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="banner-container">
+    <img src="aip.jpeg" alt="RIKEN LLM Banner">
+  </div>
+
+  <h1>RIKEN AIP LLM×ML Workshop</h1>
+
+  <nav>
+    <a href="#dates">Dates and Location</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#organizers">Organizers</a>
+  </nav>
+
+  <h2 id="dates">Dates and Location</h2>
+  <ul>
+    <li><strong>Dates:</strong> October 2 to 3, 2025</li>
+    <li><strong>Location:</strong> <span class="place">RIKEN AIP Open Space, Tokyo</span>
+      <span class="dot">·</span>
+      Online (with verification)
+      <a class="btn-zoom" href="https://riken-jp.zoom.us/j/7138827826?pwd=aTR3eGdpaGxxbVp6MkF0L25nTFh5QT09&omn=95573443281" target="_blank" rel="noopener">Join via Zoom</a>
+    </li>
+    <li><strong>Accessibility:</strong> Open to all RIKEN-affiliated members</li>
+  </ul>
+
+  <div class="wrapper">
+    <h2 id="schedule">Schedule</h2>
+    <p class="lead">Sessions are grouped as 3 talks. Click a date to switch.</p>
+
+    <!-- Tabs -->
+    <div class="tabs" role="tablist" aria-label="Select day">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="day1" id="tab1">Day 1 · October 2, 2025</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="day2" id="tab2">Day 2 · October 3, 2025</button>
+      <span class="indicator" aria-hidden="true"></span>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <span class="talk"><span class="dot"></span>Talk</span>
+      <span class="break"><span class="dot"></span>Break</span>
+      <span class="cafe"><span class="dot"></span>Social Gathering</span>
+    </div>
+
+    <!-- Day 1 -->
+    <section class="day active" id="day1" aria-labelledby="tab1">
+      <div class="date-header"><div class="date-title">Day 1</div><div class="date-sub">October 2, 2025</div></div>
+
+      <!-- Opening -->
+      <div class="block opening">
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Welcome and Opening Remarks</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">10:00 ~ 10:10</div>
+      </div>
+
+      <!-- Session A -->
+      <div class="block session">
+        <div class="session-header">
+          <div class="session-title">
+            <span>Session A</span>
+            <span class="session-time">10:10 ~ 12:30</span>
+          </div>
+          <span class="session-chair">Session Chair: Zhen-Yu Zhang</span>
+        </div>
+        <div class="session-body">
+          <div class="slot talk">
+            <div class="time">10:10 ~ 10:45</div>
+            <div class="meta">
+              <div class="title">Interpretability: What Do We Know and What Do We Want to Know?</div>
+              <div class="speaker">Speaker: Benjamin Heinzerling</div>
+              <div class="team">Natural Language Understanding Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">The first half of the talk will give a high-level overview of the state of the art in LLM interpretability, covering representational analysis, sparse autoencoders, and circuits. The second half will be about the question what the goal of interpretability is (or should be). </p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">10:45 ~ 11:20</div>
+            <div class="meta">
+              <div class="title">Understanding Fact Recall in Language Models: Why Mixed Training Teaches Knowledge While Two-Stage Training Encourages Memorization</div>
+              <div class="speaker">Speaker: Ying Zhang</div>
+              <div class="team">Natural Language Understanding Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Fact recall, the ability of language models (LMs) to retrieve specific factual knowledge, remains a challenging task despite their impressive general capabilities. Common training strategies often struggle to promote robust recall behavior with two-stage training, which first trains a model with fact-storing examples (e.g., factual statements) and then with fact-recalling examples (question–answer pairs), tending to encourage rote memorization rather than generalizable fact retrieval. In contrast, mixed training, which jointly uses both types of examples, has been empirically shown to improve the ability to recall facts, but the underlying mechanisms are still poorly understood. In this work, we investigate how these training strategies affect how model parameters are shaped during training and how these differences relate to their ability to recall facts. Our analysis reveals that mixed training encouraging a larger and more centralized set of shared parameters that are strongly influenced by both fact-storing and fact-recalling examples. These findings suggest that the emergence of parameters may play a key role in enabling LMs to generalize factual knowledge across task formulations.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">11:20 ~ 11:55</div>
+            <div class="meta">
+              <div class="title">TopK Language Models</div>
+              <div class="speaker">Speaker: Ryosuke Takahashi</div>
+              <div class="team">Natural Language Understanding Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Add abstract here.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">11:55 ~ 12:30</div>
+            <div class="meta">
+              <div class="title">Mechanistic Insights into Grokking from the Embedding Layer</div>
+              <div class="speaker">Speaker: Hilal AlQuabeh</div>
+              <div class="team">Natural Language Understanding Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Grokking, a delayed generalization in neural networks after perfect training performance, has been observed in Transformers and MLPs, but the components driving it remain underexplored. We show that embeddings are central to grokking: introducing them into MLPs induces delayed generalization in modular arithmetic tasks, whereas MLPs without embeddings can generalize immediately. Our analysis identifies two key mechanisms: (1) Embedding update dynamics, where rare tokens stagnate due to sparse gradient updates and weight decay, and (2) Bilinear coupling, where the interaction between embeddings and downstream weights introduces saddle points and increases sensitivity to initialization. To confirm these mechanisms, we investigate frequency-aware sampling, which balances token updates by minimizing gradient variance, and embedding-specific learning rates, derived from the asymmetric curvature of the bilinear loss landscape. We prove that an adaptive learning rate ratio, (\frac{\eta_E}{\eta_W} \propto \frac{\sigma_{\max}(E)}{\sigma_{\max}(W)} \cdot \frac{f_W}{f_E}), mitigates bilinear coupling effects, accelerating convergence. Our methods not only improve grokking dynamics but also extend to broader challenges in Transformer optimization, where bilinear interactions hinder efficient training.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lunch -->
+      <div class="block break">
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Lunch</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">12:30 ~ 13:30</div>
+      </div>
+
+      <!-- Session B -->
+      <div class="block session">
+        <div class="session-header">
+          <div class="session-title">
+            <span>Session B</span>
+            <span class="session-time">13:30 ~ 15:15</span>
+          </div>
+          <span class="session-chair">Session Chair: Wei Huang</span>
+        </div>
+        <div class="session-body">
+          <div class="slot talk">
+            <div class="time">13:30 ~ 14:05</div>
+            <div class="meta">
+              <div class="title">Select Before Use: On the Importance of Base Model Selection in Preference Alignment</div>
+              <div class="speaker">Speaker: Muyang Li</div>
+              <div class="team">Imperfect Information Learning Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">The post-training stage of Large Language Models (LLMs) typically involves Supervised Fine-Tuning (SFT) followed by preference alignment to ensure models to generate safe, helpful, and instruction-aligned content. The SFT model critically serves as both the initialization and reference policy for subsequent preference alignment. However, an essential yet often neglected question is the optimal selection of the SFT checkpoint for this role. In this presentation, we demonstrate that the choice of SFT checkpoint significantly impacts final aligned performance. Furthermore, the conventional practice of selecting the SFT checkpoint with the minimum validation loss often fails to identify the optimal starting point for achieving maximal performance after preference alignment. We attribute this to the fundamental objective conflict between SFT's focus on verbatim fitting and preference alignment's goal of enhancing response discriminability. A naive solution would be exhaustively evaluating all candidate SFT checkpoints through full preference alignment process, which is computationally prohibitive. To this end, we propose Margin Score, a simple, yet efficient metrics for estimating initial discriminability between the chosen and rejected response from the preference data, to efficiently estimate the learning difficulty for adapting a SFT model for preference alignment. Empirical evidence suggests that, using our selected model as reference can gain 23.4% relative increase on length-controlled win rate on the popular Zephyr recipe comparing to existing techniques.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">14:05 ~ 14:40</div>
+            <div class="meta">
+              <div class="title">In-context Demonstration Matters: On Prompt Optimization for Pseudo-Supervision Refinement</div>
+              <div class="speaker">Speaker: Zhen-Yu Zhang</div>
+              <div class="team">Imperfect Information Learning Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Add abstract here.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">14:40 ~ 15:15</div>
+            <div class="meta">
+              <div class="title">Physics Informed Large Language Models for Power Grids Optimization</div>
+              <div class="speaker">Speaker: Salah Ghamizi</div>
+              <div class="team">Imperfect Information Learning Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Efficiently solving Optimal Power Flow (OPF) problems in power systems is crucial for operational planning and grid management. There is a growing need for scalable algorithms capable of handling the increasing variability, constraints, and uncertainties in modern power networks while providing accurate and fast solutions. To address this, machine learning techniques, particularly Graph Neural Networks (GNNs) have emerged as promising approaches. This work introduces PowerGraph-LLM, the first framework explicitly designed for solving OPF problems using Large Language Models (LLMs). The proposed approach combines graph and tabular representations of power grids to effectively query LLMs, capturing the complex relationships and constraints in power systems. A new implementation of in-context learning and fine-tuning protocols for LLMs is introduced, tailored specifically for the OPF problem. PowerGraph-LLM demonstrates reliable performances using off-the-shelf LLM. Our study reveals the impact of LLM architecture, size, and fine-tuning and demonstrates our framework's ability to handle realistic grid components and constraints.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tea/Coffee -->
+      <div class="block break">
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Tea/Coffee</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">15:15 ~ 16:00</div>
+      </div>
+
+      <!-- Session C -->
+      <div class="block session">
+        <div class="session-header">
+          <div class="session-title">
+            <span>Session C</span>
+            <span class="session-time">16:00 ~ 17:45</span>
+          </div>
+          <span class="session-chair">Session Chair: Yuning Qiu</span>
+        </div>
+        <div class="session-body">
+          <div class="slot talk">
+            <div class="time">16:00 ~ 16:35</div>
+            <div class="meta">
+              <div class="title">Provable In-Context Learning of Autoregressive Processes under Varying Task Distributions</div>
+              <div class="speaker">Speaker: Hanna Tseran</div>
+              <div class="team">High-Dimensional Structure Theory Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">In-context learning enables large language models to adapt to tasks directly from input sequences without parameter updates. Despite recent interest, the mechanisms underlying this phenomenon remain poorly understood. This work investigates how transformers implement in-context learning for autoregressive processes. We analyze a two-layer architecture with a linear attention head and a nonlinear fully connected layer trained via gradient descent on the outer layer. Our setup focuses on varying prompt distributions, ensuring robustness across tasks. We prove that the network learns the optimal AR(1) estimator, establish approximation and convergence bounds, and confirm the findings experimentally. These results extend prior analyses to settings with distribution variation across prompts, providing insights into how meta-learning in transformers gives rise to their in-context learning ability.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">16:35 ~ 17:10</div>
+            <div class="meta">
+              <div class="title">Trained Mamba Emulates Online Gradient Descent in In-Context Linear Regression</div>
+              <div class="speaker">Speaker: Wei Huang</div>
+              <div class="team">Deep Learning Theory Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">State-space models (SSMs), particularly Mamba, emerge as an efficient Transformer alternative with linear complexity for long-sequence modeling. Recent empirical works demonstrate Mamba's in-context learning (ICL) capabilities competitive with Transformers, a critical capacity for large foundation models. However, theoretical understanding of Mamba’s ICL remains limited, restricting deeper insights into its underlying mechanisms. Even fundamental tasks such as linear regression ICL, widely studied as a standard theoretical benchmark for Transformers, have not been thoroughly analyzed in the context of Mamba. To address this gap, we study the training dynamics of Mamba on the linear regression ICL task. By developing novel techniques tackling non-convex optimization with gradient descent related to Mamba's structure, we establish an exponential convergence rate to ICL solution, and derive a loss bound that is comparable to Transformer's. Importantly, our results reveal that Mamba can perform a variant of online gradient descent to learn the latent function in context. This mechanism is different from that of Transformer, which is typically understood to achieve ICL through gradient descent emulation. The theoretical results are verified by experimental simulation.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">17:10 ~ 17:45</div>
+            <div class="meta">
+              <div class="title">Primacy and Recency Effect in Mamba: A Mechanistic Perspective<span class="tag online">Online</span></div>
+              <div class="speaker">Speaker: Muhammad Cendekia Airlangga</div>
+              <div class="team">Natural Language Understanding Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Add abstract here.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dinner -->
+      <div class="block cafe">
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Self-paid Social Gathering <a href="https://tabelog.com/tokyo/A1302/A130202/13269910/" target="_blank">釣宿酒場マヅメ 日本橋店</a></div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">18:00 ~ </div>
+      </div>
+
+    </section>
+
+    <!-- Day 2 -->
+    <section class="day" id="day2" aria-labelledby="tab2">
+      <div class="date-header"><div class="date-title">Day 2</div><div class="date-sub">October 3, 2025</div></div>
+
+      <!-- Session D -->
+      <div class="block session">
+        <div class="session-header">
+          <div class="session-title">
+            <span>Session D</span>
+            <span class="session-time">10:00 ~ 11:45</span>
+          </div>
+          <span class="session-chair">Session Chair: Benjamin Tobias Heinzerling</span>
+        </div>
+        <div class="session-body">
+          <div class="slot talk">
+            <div class="time">10:00 ~ 10:35</div>
+            <div class="meta">
+              <div class="title">Fast Substructure Search on JSONL for Structured RAG</div>
+              <div class="speaker">Speaker: Yasuo Tabei</div>
+              <div class="team">Succinct Information Processing Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Substructure search in JSONL datasets is indispensable for realizing structured Retrieval-Augmented Generation (RAG) in foundation model applications. However, existing methods incur prohibitively high computational costs. In this work, we propose jXBW, a fast substructure search method that introduces a merged tree representation, a succinct data structure based on the extended Burrows–Wheeler Transform, and a three-step search algorithm. Experimental results demonstrate that jXBW achieves up to 4,700× speedup over tree-based methods and more than 6×10⁶× speedup over XML-based processing.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">10:35 ~ 11:10</div>
+            <div class="meta">
+              <div class="title">Best-of-N Mixtures in the Infinite-N Limit</div>
+              <div class="speaker">Speaker: Junpei Komiyama</div>
+              <div class="team">Sequential Decision Making Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">We study best-of-$N$ for large language models (LLMs) where the selection is based on majority voting. In particular, we analyze the limit $N \to \infty$, which we denote as \boinf. While this approach achieves impressive performance in the limit, it requires an infinite test-time budget. To address this, we propose an adaptive generation scheme that selects $N$ based on answer agreement, thereby efficiently allocating inference-time computation. Beyond adaptivity, we extend the framework to weighted ensembles of multiple LLMs, showing that such mixtures can outperform any individual model. The optimal ensemble weighting is formulated as a mixed-integer linear program. Extensive experiments demonstrate the effectiveness of our approach: for example, an ensemble of Bo1 accuracy $\le 75\%$ LLMs achieves up to 93\% accuracy on AIME2025.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">11:10 ~ 11:45</div>
+            <div class="meta">
+              <div class="title">Seeing Is Believing, But How Much? A Comprehensive Analysis of Verbalized Calibration in Vision-Language Models</div>
+              <div class="speaker">Speaker: Weihao Xuan</div>
+              <div class="team">Geoinformatics Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Uncertainty quantification is essential for assessing the reliability and trustworthiness of modern AI systems. Among existing approaches, verbalized uncertainty, where models express their confidence through natural language, has emerged as a lightweight and interpretable solution in large language models (LLMs). However, its effectiveness in vision-language models (VLMs) remains insufficiently studied. In this work, we conduct a comprehensive evaluation of verbalized confidence in VLMs, spanning three model categories, four task domains, and three evaluation scenarios. Our results show that current VLMs often display notable miscalibration across diverse tasks and settings. Notably, visual reasoning models (i.e., thinking with images) consistently exhibit better calibration, suggesting that modality-specific reasoning is critical for reliable uncertainty estimation. To further address calibration challenges, we introduce Visual Confidence-Aware Prompting, a two-stage prompting strategy that improves confidence alignment in multimodal settings. Overall, our study highlights the inherent miscalibration in VLMs across modalities. More broadly, our findings underscore the fundamental importance of modality alignment and model faithfulness in advancing reliable multimodal systems.</p>
+                </div>
+            </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lunch -->
+      <div class="block break">
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Lunch</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">11:45 ~ 13:00</div>
+      </div>
+
+      <!-- Session E -->
+      <div class="block session">
+        <div class="session-header">
+          <div class="session-title">
+            <span>Session E</span>
+            <span class="session-time">13:00 ~ 16:15</span>
+          </div>
+          <span class="session-chair">Session Chair: E</span>
+        </div>
+        <div class="session-body">
+          <div class="slot talk">
+            <div class="time">13:00 ~ 13:35</div>
+            <div class="meta">
+              <div class="title">Variational Training for Improving and Understanding LLMs</div>
+              <div class="speaker">Speaker: Thomas Möllenhoff</div>
+              <div class="team">Adaptive Bayesian Intelligence Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Add abstract here.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tea/Coffee -->
+      <div class="block break">
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Discussion over Tea/Coffee</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">13:35 ~ 14:30</div>
+      </div>
+
+      <!-- Session E -->
+      <div class="block session">
+        <div class="session-header">
+          <div class="session-title">
+            <span>Session E</span>
+            <span class="session-time">13:00 ~ 16:15</span>
+          </div>
+          <span class="session-chair">Session Chair: E</span>
+        </div>
+        <div class="session-body">
+          <div class="slot talk">
+            <div class="time">14:30 ~ 15:05</div>
+            <div class="meta">
+              <div class="title">Variational Model Merging</div>
+              <div class="speaker">Speaker: Hugo Monzon</div>
+              <div class="team">Adaptive Bayesian Intelligence Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Add abstract here.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">15:05 ~ 15:40</div>
+            <div class="meta">
+              <div class="title">SPIRIT: Patching Speech Language Models against Jailbreak Attacks <span class="tag online">Online</span></div>
+              <div class="speaker">Speaker: Nurdaulet Mukhituly</div>
+              <div class="team">Natural Language Understanding Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Add abstract here.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="slot talk">
+            <div class="time">15:40 ~ 16:15</div>
+            <div class="meta">
+              <div class="title">Interpretting LLM's Processing of Various Inputs: Repetition, Typo, and Spelling-out<span class="tag online">Online</span></div>
+              <div class="speaker">Speaker: Tatsuya Hiraoka</div>
+              <div class="team">Natural Language Understanding Team</div>
+              <details class="abstract">
+                <summary><span class="abstract-icon">＋</span><span>Abstract</span></summary>
+                <div class="abstract-body">
+                  <p class="abstract-placeholder">Add abstract here.</p>
+                </div>
+              </details>  
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Closing -->
+      <div class="block closing">
+        <div class="meta"><div class="title" style="font-weight:700;color:#21324a">Closing Remarks</div></div>
+        <div class="time" style="font-variant-numeric:tabular-nums;font-weight:700;color:#18407c">16:15 ~ 16:30</div>
+      </div>
+    </section>
+  </div>
+
+  <h2 id="organizers">Organizers</h2>
+  <ul>
+    <li>Prof. Masashi Sugiyama</li>
+    <li>Prof. Kentaro Inui</li>
+    <li>Dr. Benjamin Tobias Heinzerling</li>
+    <li>Dr. Zhen-Yu Zhang</li>
+  </ul>
+
+  For any questions please contact
+  <a href="mailto:zhen-yu.zhang@riken.jp">Zhen-Yu Zhang</a> (zhen-yu.zhang@riken.jp)
+  or
+  <a href="mailto:benjamin.heinzerling@riken.jp">Benjamin T. Heinzerling</a> (benjamin.heinzerling@riken.jp).
+
+  <h2>Acknowledgment</h2>
+  <p>We gratefully acknowledge support from RIKEN AIP and all participating teams.</p>
+
+  <footer>
+    © 2025 RIKEN LLM Workshop
+  </footer>
+
+</div>
+
+<script>
+  const tabs = Array.from(document.querySelectorAll('.tab'));
+  const days = Array.from(document.querySelectorAll('.day'));
+  const indicator = document.querySelector('.tabs .indicator');
+
+  function moveIndicator(active){
+    if(!active || !indicator) return;
+    const r = active.getBoundingClientRect();
+    const pr = active.parentElement.getBoundingClientRect();
+    indicator.style.width = r.width + 'px';
+    indicator.style.transform = `translateX(${r.left - pr.left}px)`;
+  }
+
+  function activate(i){
+    tabs.forEach(b => b.setAttribute('aria-selected','false'));
+    days.forEach(d => d.classList.remove('active'));
+    tabs[i].setAttribute('aria-selected','true');
+    days[i].classList.add('active');
+    moveIndicator(tabs[i]);
+  }
+
+  tabs.forEach((t,i)=>t.addEventListener('click',()=>activate(i)));
+
+  window.addEventListener('load',()=>{
+    const current=document.querySelector('.tab[aria-selected="true"]')||tabs[0];
+    activate(tabs.indexOf(current));
+  });
+  window.addEventListener('resize',()=>{
+    const current=document.querySelector('.tab[aria-selected="true"]')||tabs[0];
+    moveIndicator(current);
+  });
+
+  // Abstract summary icon toggle
+  document.addEventListener('toggle', (e) => {
+    if (e.target.matches('details.abstract')) {
+      const icon = e.target.querySelector('.abstract-icon');
+      if (icon) icon.textContent = e.target.open ? '－' : '＋';
+    }
+  }, true);
+</script>
+</body>
+</html>
