@@ -198,6 +198,11 @@
   .abstract-body p{margin:0 0 10px}
   .abstract-placeholder{color:#6f7f95;font-style:italic}
 </style>
+<style id="speaker-team-layout">
+  .slot .meta .speaker-team{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:baseline;gap:16px;margin-top:6px}
+  .slot .meta .speaker-team .speaker{margin:0;text-align:left;overflow-wrap:anywhere}
+  .slot .meta .speaker-team .team{margin:0;text-align:right;overflow-wrap:anywhere}
+</style>
 </head>
 <body>
 <div class="container">
@@ -208,18 +213,12 @@
 
   <h1>RIKEN AIP Workshop on LLM×ML 2026</h1>
 
-  <nav>
-    <a href="#dates">Dates and Location</a>
-    <a href="#schedule">Schedule</a>
-    <a href="#organizers">Organizers</a>
-  </nav>
-
   <h2 id="dates">Dates and Location</h2>
   <ul>
     <li><strong>Dates:</strong> November 11–12, 2026</li>
     <li><strong>Location:</strong> <span class="place">RIKEN AIP Open Space, Tokyo</span>
       <span class="dot">·</span>
-      Online (with verification) <a class="btn-zoom" href="https://riken-jp.zoom.us/j/98110608661?pwd=xNbgMwbbN7fbUkfsvkwa5bTlyuw8CH.1" target="_blank" rel="noopener noreferrer">Join via Zoom</a> <a class="btn-zoom" href="https://riken-jp.zoom.us/j/98110608661?pwd=xNbgMwbbN7fbUkfsvkwa5bTlyuw8CH.1" target="_blank" rel="noopener noreferrer">Join via Zoom</a>
+      Online (with verification) <a class="btn-zoom" href="https://riken-jp.zoom.us/j/98110608661?pwd=xNbgMwbbN7fbUkfsvkwa5bTlyuw8CH.1" target="_blank" rel="noopener noreferrer">Join via Zoom</a>
     </li>
     <li><strong>Accessibility:</strong> Open to all RIKEN-affiliated members</li>
   </ul>
@@ -257,8 +256,10 @@
           <div class="time">10:40 ~ 11:15</div>
           <div class="meta">
             <div class="title">An Overview of the NLU Team&#x27;s Recent Work on LLM Interpretability</div>
-            <div class="speaker">Speaker: Benjamin Heinzerling</div>
-            <div class="team">Natural Language Understanding Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Benjamin Heinzerling</div>
+              <div class="team">Natural Language Understanding Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p class="abstract-placeholder">Abstract to be announced.</p></div>
@@ -268,8 +269,10 @@
           <div class="time">11:15 ~ 11:50</div>
           <div class="meta">
             <div class="title">How We Understand In-context Learning in Mechanism?</div>
-            <div class="speaker">Speaker: Yufeng Zhao</div>
-            <div class="team">Natural Language Understanding Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Yufeng Zhao</div>
+              <div class="team">Natural Language Understanding Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p class="abstract-placeholder">Abstract to be announced.</p></div>
@@ -288,8 +291,10 @@
           <div class="time">12:05 ~ 12:40</div>
           <div class="meta">
             <div class="title">Title to be announced</div>
-            <div class="speaker">Speaker: Kai Nakaishi</div>
-            <div class="team">Natural Language Understanding Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Kai Nakaishi</div>
+              <div class="team">Natural Language Understanding Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p class="abstract-placeholder">Abstract to be announced.</p></div>
@@ -308,8 +313,10 @@
           <div class="time">13:30 ~ 14:05</div>
           <div class="meta">
             <div class="title">Title to be announced</div>
-            <div class="speaker">Speaker: Takashi Ishida</div>
-            <div class="team">Imperfect Information Learning Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Takashi Ishida</div>
+              <div class="team">Imperfect Information Learning Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p class="abstract-placeholder">Abstract to be announced.</p></div>
@@ -319,8 +326,10 @@
           <div class="time">14:05 ~ 14:40</div>
           <div class="meta">
             <div class="title">Learning to Reweight Rollouts: Mitigating Distribution Shift in Group Relative Policy Optimization</div>
-            <div class="speaker">Speaker: Zhen-Yu Zhang</div>
-            <div class="team">Imperfect Information Learning Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Zhen-Yu Zhang</div>
+              <div class="team">Imperfect Information Learning Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p>Recently, reinforcement learning from verifiable rewards (RLVR) is practically very important, where the leading approach is group relative policy optimization (GRPO) that typically faces a trade-off between rollout efficiency and downstream performance. To improve efficiency while preserving performance, existing selective rollout methods mainly exploit only source-side training dynamics to optimize the discrete distribution over source prompts. However, in practice, the source training dataset is rarely identically distributed with the target test dataset. When such a mismatch exists, due to legal or privacy constraints, it is usually not acceptable to share target prompts themselves with the RLVR trainer. Nevertheless, it is still possible to share some target-side feedback such as accuracy on a small held-out data. In this paper, we propose learning-to-reweight rollout (L2RR) that explicitly incorporates target-side performance feedback into GRPO. Specifically, L2RR learns a discrete sampling distribution over source prompts by optimizing a bi-level objective that maximizes accuracy on a held-out target dataset, while simultaneously penalizing rollouts that provide little incremental learning information. Empirical studies on six math reasoning benchmarks and three model scales show that L2RR improves target-domain performance and increases rollout efficiency.</p></div>
@@ -330,8 +339,10 @@
           <div class="time">14:40 ~ 15:15</div>
           <div class="meta">
             <div class="title">Encoding Context into LLM Weights: What Makes It Context?</div>
-            <div class="speaker">Speaker: Qizhou Wang</div>
-            <div class="team">Imperfect Information Learning Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Qizhou Wang</div>
+              <div class="team">Imperfect Information Learning Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p>Long-context inference allows large language models (LLMs) to use extensive documents, interaction histories, and other contextual information, but its memory and computational costs increase rapidly with context length. An emerging alternative is to encode context into temporary model-weight updates and remove the original context from the input. However, memorizing information in weights does not necessarily enable an LLM to recognize and use that information as context during subsequent inference. In this talk, I will introduce Addressable Context Encoding (ACE), a method designed to bridge this gap without task-specific meta-training. ACE associates each context chunk with a unique identifier during encoding, providing an explicit address through which the encoded information can later be accessed. A complementary prompting framework then specifies how the retrieved information should be selectively used as conversational context. Experiments across controlled context-use tasks and long-context benchmarks show that ACE substantially improves recall, continuation, retrieval, and the handling of conflicts between encoded information and pre-existing knowledge compared with conventional test-time context encoding. These results highlight a central challenge for context-to-weight methods: information must not only be stored in model parameters, but also remain identifiable, accessible, and usable as context.</p></div>
@@ -350,8 +361,10 @@
           <div class="time">15:45 ~ 16:20</div>
           <div class="meta">
             <div class="title">Muon with Finite Newton–Schulz: The Smoothing Benefit in Nonsmooth Nonconvex Optimization</div>
-            <div class="speaker">Speaker: Taira Tsuchiya</div>
-            <div class="team">Sequential Decision Making Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Taira Tsuchiya</div>
+              <div class="team">Sequential Decision Making Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p>Muon has emerged as a strong optimizer for the matrix-valued parameters in large language model pretraining, approximately orthogonalizing its momentum with a few Newton–Schulz iterations. Existing theory either replaces this iteration with the exact polar factor it approximates, or treats it as a source of approximation error, and thus the iteration Muon actually runs can only hurt the guarantees. We show that finite Newton–Schulz can instead be beneficial for nonsmooth nonconvex optimization. To this end, we analyze Muon through the online-to-nonconvex conversion, which views the update rule of an optimizer as an online learner and converts its regret bound into a stationarity guarantee. We observe that the finite Newton--Schulz iteration smooths the discontinuous polar map into a Lipschitz map of the singular values, and Muon with finite Newton–Schulz can be regarded as an online learner with a smoothed spectral potential. Building on this observation, we prove that a Newton–Schulz depth growing only logarithmically in the target accuracy suffices for convergence to stationary points in nonsmooth nonconvex optimization, whereas Muon with the exact-polar update may fail to converge. The resulting sample complexity bounds match the best-known guarantees for nonsmooth nonconvex optimization and are optimal for smooth nonconvex optimization up to problem-dependent factors. The argument extends beyond Newton–Schulz to general spectral maps that are Lipschitz smoothings of the polar map.</p></div>
@@ -361,8 +374,10 @@
           <div class="time">16:20 ~ 16:55</div>
           <div class="meta">
             <div class="title">Demystifying Muon: From Spectral Filtering to Feature Learning <span class="tag online">Online</span></div>
-            <div class="speaker">Speaker: Han Bao</div>
-            <div class="team">Sequential Decision Making Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Han Bao</div>
+              <div class="team">Sequential Decision Making Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p>Based on our recent work, I will discuss two functional aspects of Muon optimizer: it acts as a robust feature learner against anisotropic data (arXiv:2601.22652), while annihilating signal-unrelated noises (arXiv:2606.03899).</p></div>
@@ -372,8 +387,10 @@
           <div class="time">16:55 ~ 17:30</div>
           <div class="meta">
             <div class="title">Can LLM Agents Respond to Disasters? Benchmarking Heterogeneous Geospatial Reasoning in Emergency Operations</div>
-            <div class="speaker">Speaker: Junjue WANG</div>
-            <div class="team">Geoinformatics Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Junjue WANG</div>
+              <div class="team">Geoinformatics Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p>Operational disaster response goes beyond damage assessment, requiring responders to integrate multi-sensor signals, reason over road networks, populations and key facilities, plan evacuations, and produce actionable reports. However, prior work largely isolates remote-sensing perception or evaluates generic tool use, leaving the end-to-end workflows of emergency operations underexplored. In this paper, we introduce Disaster Operational Response Agent benchmark (DORA), the first agentic benchmark for end-to-end disaster response: 515 expert authored tasks across 45 real-world disaster events spanning 10 types, paired with expert-verified, replayable gold trajectories totaling 3,500 tool-call steps. Tasks span five dimensions that cover the operational disaster-response pipeline: disaster perception, spatial relational analysis, disaster operational planning, temporal evolution reasoning, and multi-modal report synthesis. Agents compose calls from a 108-tool MCP library over heterogeneous geospatial data: optical, SAR, and multi-spectral imagery across single-, bi-, and multi-temporal sequences (0.015–10 m GSD), complemented by elevation and social vector layers. We comprehensively evaluate 13 frontier LLMs on our benchmark, revealing three persistent challenges: 1) disaster-domain grounding exposes unique failure modes (damage-semantic grounding, sensor-modality mismatch, and disaster-pipeline composition); 2) agents are doubly bottlenecked by tool selection and argument grounding, where gold toolorder hints improve accuracy by only 1.08–4.40%, and alternative scaffolds yield at most a 3.24% gain; 3) compositional fragility scales with trajectory length, the agent-to-gold gap widening from 7% to 56% on long pipelines. DORA establishes a rigorous testbed for operationally reliable disaster-response agents.</p></div>
@@ -398,8 +415,10 @@
           <div class="time">10:00 ~ 10:35</div>
           <div class="meta">
             <div class="title">Title to be announced</div>
-            <div class="speaker">Speaker: Taiji Suzuki</div>
-            <div class="team">Deep Learning Theory Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Taiji Suzuki</div>
+              <div class="team">Deep Learning Theory Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p class="abstract-placeholder">Abstract to be announced.</p></div>
@@ -409,8 +428,10 @@
           <div class="time">10:35 ~ 11:10</div>
           <div class="meta">
             <div class="title">How transformers learn to plan via multi-token prediction</div>
-            <div class="speaker">Speaker: Wei Huang</div>
-            <div class="team">Deep Learning Theory Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Wei Huang</div>
+              <div class="team">Deep Learning Theory Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p>While next-token prediction (NTP) has been the standard objective for training language models, it often struggles to capture global structure in reasoning tasks. Multi-token prediction (MTP) has recently emerged as a promising alternative, yet its underlying mechanisms remain poorly understood. In this paper, we study how MTP facilitates reasoning, with a focus on planning. Empirically, we show that MTP consistently outperforms NTP on both synthetic graph path-finding tasks and more realistic reasoning benchmarks, such as Countdown and boolean satisfiability problems. Theoretically, we analyze a simplified two-layer Transformer on a star graph task. We prove that MTP induces a two-stage reverse reasoning process: the model first attends to the end node and then reconstructs the path by tracing intermediate nodes backward. This behavior arises from a gradient decoupling property of MTP, which provides a cleaner training signal compared to NTP. Ultimately, our results highlight how multi-token objectives inherently bias optimization toward robust and interpretable reasoning circuits.</p></div>
@@ -429,8 +450,10 @@
           <div class="time">11:25 ~ 12:00</div>
           <div class="meta">
             <div class="title">Title to be announced</div>
-            <div class="speaker">Speaker: Taoli Zheng</div>
-            <div class="team">Deep Learning Theory Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Taoli Zheng</div>
+              <div class="team">Deep Learning Theory Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p class="abstract-placeholder">Abstract to be announced.</p></div>
@@ -449,8 +472,10 @@
           <div class="time">13:00 ~ 13:35</div>
           <div class="meta">
             <div class="title">Variational Learning for Language and Reasoning</div>
-            <div class="speaker">Speaker: Thomas Moellenhoff</div>
-            <div class="team">Adaptive Bayesian Intelligence Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Thomas Moellenhoff</div>
+              <div class="team">Adaptive Bayesian Intelligence Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p>In this talk, I will discuss how variational learning can improve language generation and reasoning by learning distributions over neural-network weights. I will cover efficient methods for structured weight uncertainty, applications to decoding and exploration in reinforcement learning, and training objectives that improve the chance of success across multiple reasoning attempts.</p></div>
@@ -460,8 +485,10 @@
           <div class="time">13:35 ~ 14:10</div>
           <div class="meta">
             <div class="title">Understanding the Linear Representation Hypothesis</div>
-            <div class="speaker">Speaker: Benjamin Heinzerling</div>
-            <div class="team">Natural Language Understanding Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Benjamin Heinzerling</div>
+              <div class="team">Natural Language Understanding Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p class="abstract-placeholder">Abstract to be announced.</p></div>
@@ -480,8 +507,10 @@
           <div class="time">15:00 ~ 15:35</div>
           <div class="meta">
             <div class="title">Title to be announced</div>
-            <div class="speaker">Speaker: Jian Xu</div>
-            <div class="team">Tensor Learning Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Jian Xu</div>
+              <div class="team">Tensor Learning Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p class="abstract-placeholder">Abstract to be announced.</p></div>
@@ -491,8 +520,10 @@
           <div class="time">15:35 ~ 16:10</div>
           <div class="meta">
             <div class="title">Title to be announced <span class="tag online">Online</span></div>
-            <div class="speaker">Speaker: Mingyuan Bai</div>
-            <div class="team">Deep Learning Theory Team</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Mingyuan Bai</div>
+              <div class="team">Deep Learning Theory Team</div>
+            </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p class="abstract-placeholder">Abstract to be announced.</p></div>
