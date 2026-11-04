@@ -280,14 +280,14 @@
         </div><div class="slot talk">
           <div class="time">11:30 ~ 12:00</div>
           <div class="meta">
-            <div class="title">Title to be announced</div>
+            <div class="title">How We Understand In-context Learning in Empirical Mechanism?</div>
             <div class="speaker-team">
               <div class="speaker">Speaker: Yufeng Zhao</div>
               <div class="team">Natural Language Understanding Team</div>
             </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
-              <div class="abstract-body"><p class="abstract-placeholder"><em>Abstract to be announced.</em></p></div>
+              <div class="abstract-body"><p>In-context learning (ICL) is a fundamental calculation in modern large language models (LLMs), and elucidating its underlying principles may offer valuable insights into the foundations of computational and human language processing. Drawing on several works conducted over the past two years, this talk presents our efforts to understand ICL from an empirical, &quot;physics-inspired&quot; perspective. Specifically, by combining theoretical insights and experiments from synthetic experiments on small models with empirical observations in large-scaled Transformer models trained from natural language corpus, we propose a series of frameworks for understanding the computations underlying ICL in modern LLMs. Furthermore, we demonstrate how these insights can be leveraged to effectively improve ICL performance.</p></div>
             </details>
           </div>
         </div><div class="slot talk">
@@ -321,19 +321,6 @@
           <div class="meta">
             <div class="title">Title to be announced</div>
             <div class="speaker-team">
-              <div class="speaker">Speaker: Yasuo Tabei</div>
-              <div class="team">Succinct Information Processing Team</div>
-            </div>
-            <details class="abstract">
-              <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
-              <div class="abstract-body"><p class="abstract-placeholder"><em>Abstract to be announced.</em></p></div>
-            </details>
-          </div>
-        </div><div class="slot talk">
-          <div class="time">14:00 ~ 14:30</div>
-          <div class="meta">
-            <div class="title">Title to be announced</div>
-            <div class="speaker-team">
               <div class="speaker">Speaker: Takashi Ishida</div>
               <div class="team">Imperfect Information Learning Team</div>
             </div>
@@ -343,7 +330,7 @@
             </details>
           </div>
         </div><div class="slot talk">
-          <div class="time">14:30 ~ 15:00</div>
+          <div class="time">14:00 ~ 14:30</div>
           <div class="meta">
             <div class="title">Learning to Reweight Rollouts: Mitigating Distribution Shift in Group Relative Policy Optimization</div>
             <div class="speaker-team">
@@ -356,7 +343,7 @@
             </details>
           </div>
         </div><div class="slot talk">
-          <div class="time">15:00 ~ 15:30</div>
+          <div class="time">14:30 ~ 15:00</div>
           <div class="meta">
             <div class="title">Encoding Context into LLM Weights: What Makes It Context?</div>
             <div class="speaker-team">
@@ -366,6 +353,19 @@
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
               <div class="abstract-body"><p>Long-context inference allows large language models (LLMs) to use extensive documents, interaction histories, and other contextual information, but its memory and computational costs increase rapidly with context length. An emerging alternative is to encode context into temporary model-weight updates and remove the original context from the input. However, memorizing information in weights does not necessarily enable an LLM to recognize and use that information as context during subsequent inference. In this talk, I will introduce Addressable Context Encoding (ACE), a method designed to bridge this gap without task-specific meta-training. ACE associates each context chunk with a unique identifier during encoding, providing an explicit address through which the encoded information can later be accessed. A complementary prompting framework then specifies how the retrieved information should be selectively used as conversational context. Experiments across controlled context-use tasks and long-context benchmarks show that ACE substantially improves recall, continuation, retrieval, and the handling of conflicts between encoded information and pre-existing knowledge compared with conventional test-time context encoding. These results highlight a central challenge for context-to-weight methods: information must not only be stored in model parameters, but also remain identifiable, accessible, and usable as context.</p></div>
+            </details>
+          </div>
+        </div><div class="slot talk">
+          <div class="time">15:00 ~ 15:30</div>
+          <div class="meta">
+            <div class="title">LLMs Faithfully and Iteratively Compute Answers During CoT: A Systematic Analysis With Multi-step Arithmetics</div>
+            <div class="speaker-team">
+              <div class="speaker">Speaker: Keito Kudo</div>
+              <div class="team">Natural Language Understanding Team</div>
+            </div>
+            <details class="abstract">
+              <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
+              <div class="abstract-body"><p>This study investigates the internal information flow of large language models (LLMs) while performing chain-of-thought (CoT) style reasoning.Specifically, with a particular interest in the faithfulness of the CoT explanation to LLMs’ final answer, we explore (i) when the LLMs’ answer is (pre)determined, especially before the CoT begins or after, and (ii) how strongly the information from CoT specifically has a causal effect on the final answer.Our experiments with controlled arithmetic tasks reveal a systematic internal reasoning mechanism of LLMs.They have not derived an answer at the moment when input was fed into the model.Instead, they compute (sub-)answers while generating the reasoning chain on the fly.Therefore, the generated reasoning chains can be regarded as faithful reflections of the model’s internal computation.</p></div>
             </details>
           </div>
         </div></div>
@@ -585,14 +585,14 @@
       </div><div class="session-body"><div class="slot talk">
           <div class="time">15:30 ~ 16:00</div>
           <div class="meta">
-            <div class="title">LLMs Faithfully and Iteratively Compute Answers During CoT: A Systematic Analysis With Multi-step Arithmetics</div>
+            <div class="title">Understanding the Linear Representation Hypothesis</div>
             <div class="speaker-team">
-              <div class="speaker">Speaker: Keito Kudo</div>
+              <div class="speaker">Speaker: Benjamin Heinzerling</div>
               <div class="team">Natural Language Understanding Team</div>
             </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
-              <div class="abstract-body"><p>This study investigates the internal information flow of large language models (LLMs) while performing chain-of-thought (CoT) style reasoning.Specifically, with a particular interest in the faithfulness of the CoT explanation to LLMs’ final answer, we explore (i) when the LLMs’ answer is (pre)determined, especially before the CoT begins or after, and (ii) how strongly the information from CoT specifically has a causal effect on the final answer.Our experiments with controlled arithmetic tasks reveal a systematic internal reasoning mechanism of LLMs.They have not derived an answer at the moment when input was fed into the model.Instead, they compute (sub-)answers while generating the reasoning chain on the fly.Therefore, the generated reasoning chains can be regarded as faithful reflections of the model’s internal computation.</p></div>
+              <div class="abstract-body"><p class="abstract-placeholder"><em>Abstract to be announced.</em></p></div>
             </details>
           </div>
         </div><div class="slot talk">
