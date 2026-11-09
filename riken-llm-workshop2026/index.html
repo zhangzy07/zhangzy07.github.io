@@ -280,7 +280,7 @@
         </div><div class="slot talk">
           <div class="time">11:30 ~ 12:00</div>
           <div class="meta">
-            <div class="title">How We Understand In-context Learning in Empirical Mechanism?</div>
+            <div class="title">How Can We Understand In-context Learning in Empirical Mechanism?</div>
             <div class="speaker-team">
               <div class="speaker">Speaker: Yufeng Zhao</div>
               <div class="team">Natural Language Understanding Team</div>
@@ -332,14 +332,14 @@
         </div><div class="slot talk">
           <div class="time">14:00 ~ 14:30</div>
           <div class="meta">
-            <div class="title">Learning to Reweight Rollouts: Mitigating Distribution Shift in Group Relative Policy Optimization</div>
+            <div class="title">Sample-efficient Personalization of Large Language Model Alignment with Multidimensional User Preference Data</div>
             <div class="speaker-team">
               <div class="speaker">Speaker: Zhen-Yu Zhang</div>
               <div class="team">Imperfect Information Learning Team</div>
             </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
-              <div class="abstract-body"><p>Recently, reinforcement learning from verifiable rewards (RLVR) is practically very important, where the leading approach is group relative policy optimization (GRPO) that typically faces a trade-off between rollout efficiency and downstream performance. To improve efficiency while preserving performance, existing selective rollout methods mainly exploit only source-side training dynamics to optimize the discrete distribution over source prompts. However, in practice, the source training dataset is rarely identically distributed with the target test dataset. When such a mismatch exists, due to legal or privacy constraints, it is usually not acceptable to share target prompts themselves with the RLVR trainer. Nevertheless, it is still possible to share some target-side feedback such as accuracy on a small held-out data. In this paper, we propose learning-to-reweight rollout (L2RR) that explicitly incorporates target-side performance feedback into GRPO. Specifically, L2RR learns a discrete sampling distribution over source prompts by optimizing a bi-level objective that maximizes accuracy on a held-out target dataset, while simultaneously penalizing rollouts that provide little incremental learning information. Empirical studies on six math reasoning benchmarks and three model scales show that L2RR improves target-domain performance and increases rollout efficiency.</p></div>
+              <div class="abstract-body"><p>Preference alignment has become a central tool to align large language models (LLMs) with human values and desired behavior, and its online variant can further advance their capabilities beyond what static data alone offer by repeatedly generating and labeling new responses with human feedback. But costly, time-consuming annotations limit its scalability, making sample efficiency essential, and existing methods typically seek to improve it by expanding coverage of the response space or selecting pairs with the highest uncertainty for comparison. Although they are effective, these methods quantify uncertainty from the perspective of the LLM, which may differ from the uncertainty perceived by the user: a pair can appear highly uncertain to the LLM even when past comparisons from the user already imply a clear ordering. In this paper, we propose multidimensional preference-guided online direct preference optimization (MPG-DPO), which leverages low-cost multidimensional evaluations from automated verifiers on the user historical comparisons to construct a personalized preference cone guiding response selection for online preference alignment. Specifically, it first discards responses that are confidently dominated under the estimated user preference, then selects two responses that are competitive under the retained preference cone yet exhibit the strongest unresolved disagreement. Theoretical analysis shows that, with high probability, the fraction of queries spent on cone-dominated responses vanishes as learning progresses. Experiments across multiple LLM families show that MPG-DPO outperforms strong contenders under matched query budgets.</p></div>
             </details>
           </div>
         </div><div class="slot talk">
@@ -455,14 +455,16 @@
       </div><div class="session-body"><div class="slot talk">
           <div class="time">10:00 ~ 10:30</div>
           <div class="meta">
-            <div class="title">Title to be announced</div>
+            <div class="title">Feature learning on logical reasoning spaces and its effect on generalization errors</div>
             <div class="speaker-team">
               <div class="speaker">Speaker: Taiji Suzuki</div>
               <div class="team">Deep Learning Theory Team</div>
             </div>
             <details class="abstract">
               <summary><span class="abstract-icon" aria-hidden="true">＋</span><span>Abstract</span></summary>
-              <div class="abstract-body"><p class="abstract-placeholder"><em>Abstract to be announced.</em></p></div>
+              <div class="abstract-body"><p>In standard feature learning theory for deep learning, existing research has primarily focused on finding low-dimensional representations within internal layers. In this talk, I propose a new perspective on feature learning over the space of sequential outputs. Specifically, the sparsity of valid logical paths is essential for achieving superior generalization in logical reasoning tasks.
+In the first half of the talk, I will show how pruning invalid reasoning paths reduces sample complexity. More concretely, we consider a hierarchical reasoning structure and analyze reinforcement learning within this framework. We demonstrate that the success of reinforcement learning heavily depends on the model&#x27;s feature learning ability over the path space, that is, how effectively it restricts its support during training. As a result, an exponential separation emerges between single-step and multi-step learning methods.
+In the second half, I will discuss the advantage of self-distillation (SD) over the usual supervised fine-tuning (SFT). I will show that SD induces sparse parameter updates that mitigate catastrophic forgetting, in contrast to standard SFT, which produces dense gradient updates that lead to forgetting.</p></div>
             </details>
           </div>
         </div><div class="slot talk">
